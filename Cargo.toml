@@ -1,0 +1,20 @@
+[package]
+name = "sodium"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+sodiumoxide = { git = "https://github.com/devtomio/sodiumoxide" }
+napi = "2.2.0"
+napi-derive = "2.2.0"
+
+[build-dependencies]
+napi-build = "1.2.1"
+
+[profile.release]
+lto = true

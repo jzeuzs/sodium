@@ -1,0 +1,31 @@
+{
+	"name": "@devtomio/sodium-darwin-x64",
+	"version": "0.0.1-dev.1",
+	"os": [
+		"darwin"
+	],
+	"cpu": [
+		"x64"
+	],
+	"main": "sodium.darwin-x64.node",
+	"files": [
+		"sodium.darwin-x64.node"
+	],
+	"description": "Libsodium bindings for Node.js",
+	"keywords": [
+		"sodium",
+		"libsodium",
+		"typescript",
+		"ts",
+		"yarn",
+		"napi",
+		"napi-rs",
+		"rust",
+		"bindings"
+	],
+	"license": "MIT",
+	"publishConfig": {
+		"access": "public"
+	},
+	"repository": "https://github.com/devtomio/sodium.git"
+}

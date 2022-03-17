@@ -1,0 +1,125 @@
+{
+	"name": "@devtomio/sodium",
+	"version": "0.0.1-dev.1",
+	"description": "Libsodium bindings for Node.js",
+	"main": "dist/index.js",
+	"repository": "https://github.com/devtomio/sodium.git",
+	"author": "Tomio <mail@tomio.codes>",
+	"license": "MIT",
+	"napi": {
+		"name": "sodium",
+		"triples": {
+			"defaults": true,
+			"additional": [
+				"x86_64-unknown-linux-musl",
+				"aarch64-unknown-linux-gnu",
+				"i686-pc-windows-msvc",
+				"armv7-unknown-linux-gnueabihf",
+				"aarch64-apple-darwin",
+				"aarch64-linux-android",
+				"x86_64-unknown-freebsd",
+				"aarch64-unknown-linux-musl",
+				"aarch64-pc-windows-msvc",
+				"armv7-linux-androideabi"
+			]
+		}
+	},
+	"scripts": {
+		"lint": "eslint src tests --ext ts --fix",
+		"format": "prettier --write . && cargo fmt",
+		"docs": "typedoc",
+		"test": "jest",
+		"test:watch": "jest --watch",
+		"update": "yarn upgrade-interactive",
+		"ts:build": "tsc -b lib",
+		"rs:build": "napi build --platform --release",
+		"artifacts": "napi artifacts",
+		"clean": "tsc -b lib --clean",
+		"watch": "tsc -b lib -w",
+		"sversion": "standard-version",
+		"commit": "git-cz",
+		"cz": "git-cz",
+		"prepublishOnly": "yarn build && napi prepublish -t npm",
+		"version": "napi version",
+		"prepare": "husky install .github/husky"
+	},
+	"dependencies": {
+		"tslib": "^2.3.1"
+	},
+	"devDependencies": {
+		"@commitlint/cli": "^16.2.3",
+		"@commitlint/config-conventional": "^16.2.1",
+		"@napi-rs/cli": "^2.4.5",
+		"@sapphire/eslint-config": "^4.3.0",
+		"@sapphire/prettier-config": "^1.4.0",
+		"@sapphire/ts-config": "^3.3.2",
+		"@swc-node/jest": "^1.4.3",
+		"@swc-node/register": "^1.4.2",
+		"@types/eslint": "^8",
+		"@types/jest": "^27.4.1",
+		"@types/libsodium-wrappers": "^0",
+		"@types/node": "^17.0.21",
+		"@types/prettier": "^2",
+		"@typescript-eslint/eslint-plugin": "^5.15.0",
+		"@typescript-eslint/parser": "^5.15.0",
+		"benny": "^3.7.1",
+		"cz-conventional-changelog": "^3.3.0",
+		"eslint": "^8.11.0",
+		"eslint-config-prettier": "^8.5.0",
+		"eslint-plugin-prettier": "^4.0.0",
+		"husky": "^7.0.4",
+		"jest": "^27.5.1",
+		"jest-circus": "^27.5.1",
+		"libsodium-wrappers": "^0.7.9",
+		"lint-staged": "^12.3.6",
+		"prettier": "^2.6.0",
+		"pretty-quick": "^3.1.3",
+		"standard-version": "^9.3.2",
+		"ts-jest": "^27.1.3",
+		"tweetnacl": "^1.0.3",
+		"typedoc": "^0.22.13",
+		"typedoc-plugin-mdn-links": "^1.0.5",
+		"typescript": "^4.6.2"
+	},
+	"files": [
+		"dist",
+		"!dist/*.tsbuildinfo"
+	],
+	"keywords": [
+		"sodium",
+		"libsodium",
+		"typescript",
+		"ts",
+		"yarn",
+		"napi",
+		"napi-rs",
+		"rust",
+		"bindings"
+	],
+	"bugs": {
+		"url": "https://github.com/devtomio/sodium/issues"
+	},
+	"homepage": "https://devtomio.github.io/sodium",
+	"commitlint": {
+		"extends": [
+			"@commitlint/config-conventional"
+		]
+	},
+	"lint-staged": {
+		"*.{mjs,js,ts}": "eslint --fix --ext mjs,js,ts",
+		"*.rs": "cargo fmt"
+	},
+	"config": {
+		"commitizen": {
+			"path": "./node_modules/cz-conventional-changelog"
+		}
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"resolutions": {
+		"jest-environment-jsdom": "https://registry.yarnpkg.com/@favware/skip-dependency/-/skip-dependency-1.1.3.tgz"
+	},
+	"packageManager": "yarn@3.2.0",
+	"prettier": "@sapphire/prettier-config"
+}
