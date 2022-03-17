@@ -32,7 +32,7 @@ jobs:
               yarn rs:build
               strip -x *.node
           - host: windows-latest
-            build: yarn build
+            build: yarn rs:build
             target: x86_64-pc-windows-msvc
             architecture: x64
           - host: windows-latest
@@ -207,7 +207,7 @@ jobs:
             env
             freebsd-version
             yarn install --immutable
-            yarn build
+            yarn rs:build
             strip -x *.node
             yarn test
             rm -rf node_modules
