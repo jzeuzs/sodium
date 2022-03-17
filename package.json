@@ -106,8 +106,7 @@
 		]
 	},
 	"lint-staged": {
-		"*.{mjs,js,ts}": "eslint --fix --ext mjs,js,ts",
-		"*.rs": "cargo fmt"
+		"*.{mjs,js,ts}": "eslint --fix --ext mjs,js,ts"
 	},
 	"config": {
 		"commitizen": {
