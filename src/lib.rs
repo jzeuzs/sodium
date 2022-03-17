@@ -2,7 +2,7 @@
 extern crate napi_derive;
 
 use napi::bindgen_prelude::*;
-use sodiumoxide::{crypto::box_::curve25519xsalsa20poly1305 as sodium_box, init};
+use exonum_sodiumoxide::{crypto::box_::curve25519xsalsa20poly1305 as sodium_box, init};
 use std::ops::DerefMut;
 
 #[napi(object)]
@@ -18,7 +18,7 @@ pub struct SodiumBox {}
 impl SodiumBox {
     #[napi(constructor)]
     pub fn new() -> Self {
-        init().unwrap();
+        init();
         SodiumBox {}
     }
 
@@ -28,7 +28,7 @@ impl SodiumBox {
 
         Ok(KeyPair {
             public_key: Uint8Array::new(pubkey.as_ref().to_vec()),
-            secret_key: Uint8Array::new(seckey.as_ref().to_vec()),
+            secret_key: Uint8Array::new(seckey.0.to_vec()),
         })
     }
 
@@ -37,17 +37,6 @@ impl SodiumBox {
         let nonce = sodium_box::gen_nonce();
 
         Ok(Uint8Array::new(nonce.as_ref().to_vec()))
-    }
-
-    #[napi(js_name = "keypair_from_seed")]
-    pub fn keypair_from_seed(&self, seed: Uint8Array) -> Result<KeyPair> {
-        let (pubkey, seckey) =
-            sodium_box::keypair_from_seed(&sodium_box::Seed::from_slice(&seed).unwrap());
-
-        Ok(KeyPair {
-            public_key: Uint8Array::new(pubkey.as_ref().to_vec()),
-            secret_key: Uint8Array::new(seckey.as_ref().to_vec()),
-        })
     }
 
     #[napi]
@@ -137,7 +126,7 @@ impl SodiumBox {
             &sodium_box::SecretKey::from_slice(&secret_key).unwrap(),
         );
 
-        Ok(Uint8Array::new(key.as_ref().to_vec()))
+        Ok(Uint8Array::new(key.0.to_vec()))
     }
 
     #[napi]
@@ -238,11 +227,5 @@ impl SodiumBox {
     #[allow(non_snake_case)]
     pub fn SECRETKEYBYTES(&self) -> u32 {
         sodium_box::SECRETKEYBYTES as u32
-    }
-
-    #[napi(getter)]
-    #[allow(non_snake_case)]
-    pub fn SEEDBYTES(&self) -> u32 {
-        sodium_box::SEEDBYTES as u32
     }
 }
