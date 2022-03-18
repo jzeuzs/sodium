@@ -9,7 +9,7 @@ edition = "2021"
 crate-type = ["cdylib"]
 
 [dependencies]
-rust_sodium = { git = "https://github.com/devtomio/rust_sodium", branch = "master" }
+rust_sodium = "0.10.2"
 napi = "2.2.0"
 napi-derive = "2.2.0"
 
