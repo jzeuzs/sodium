@@ -9,7 +9,7 @@ edition = "2021"
 crate-type = ["cdylib"]
 
 [dependencies]
-sodiumoxide = "0.2.7"
+sodiumoxide = { git = "https://github.com/devtomio/sodiumoxide" }
 napi = "2.2.0"
 napi-derive = "2.2.0"
 
