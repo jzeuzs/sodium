@@ -1,5 +1,5 @@
 {
-	"name": "@devtomio/sodium-freebsd-x64",
+	"name": "@devtomio/sodium-linux-arm-gnueabihf",
 	"version": "0.0.1-dev.1",
 	"os": [
 		"freebsd"
