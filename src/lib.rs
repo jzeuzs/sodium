@@ -18,7 +18,7 @@ pub struct SodiumBox {}
 impl SodiumBox {
     #[napi(constructor)]
     pub fn new() -> Self {
-        init().unwrap();
+        init();
         SodiumBox {}
     }
 
