@@ -2,7 +2,7 @@
 extern crate napi_derive;
 
 use napi::bindgen_prelude::*;
-use exonum_sodiumoxide::{crypto::box_::curve25519xsalsa20poly1305 as sodium_box, init};
+use sodiumoxide::{crypto::box_::curve25519xsalsa20poly1305 as sodium_box, init};
 use std::ops::DerefMut;
 
 #[napi(object)]

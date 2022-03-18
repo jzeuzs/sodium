@@ -9,7 +9,7 @@ edition = "2021"
 crate-type = ["cdylib"]
 
 [dependencies]
-exonum_sodiumoxide = "0.0.24"
+sodiumoxide = "0.2.7"
 napi = "2.2.0"
 napi-derive = "2.2.0"
 
