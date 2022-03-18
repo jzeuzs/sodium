@@ -36,7 +36,6 @@
 		"artifacts": "napi artifacts",
 		"clean": "tsc -b lib --clean",
 		"watch": "tsc -b lib -w",
-		"sversion": "standard-version",
 		"commit": "git-cz",
 		"cz": "git-cz",
 		"prepublishOnly": "yarn build && napi prepublish -t npm",
@@ -47,8 +46,6 @@
 		"tslib": "^2.3.1"
 	},
 	"devDependencies": {
-		"@commitlint/cli": "^16.2.3",
-		"@commitlint/config-conventional": "^16.2.1",
 		"@napi-rs/cli": "^2.4.5",
 		"@sapphire/eslint-config": "^4.3.0",
 		"@sapphire/prettier-config": "^1.4.0",
@@ -63,18 +60,14 @@
 		"@typescript-eslint/eslint-plugin": "^5.15.0",
 		"@typescript-eslint/parser": "^5.15.0",
 		"benny": "^3.7.1",
-		"cz-conventional-changelog": "^3.3.0",
 		"eslint": "^8.11.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-prettier": "^4.0.0",
-		"husky": "^7.0.4",
 		"jest": "^27.5.1",
 		"jest-circus": "^27.5.1",
 		"libsodium-wrappers": "^0.7.9",
 		"lint-staged": "^12.3.6",
 		"prettier": "^2.6.0",
-		"pretty-quick": "^3.1.3",
-		"standard-version": "^9.3.2",
 		"ts-jest": "^27.1.3",
 		"tweetnacl": "^1.0.3",
 		"typedoc": "^0.22.13",
@@ -100,19 +93,6 @@
 		"url": "https://github.com/devtomio/sodium/issues"
 	},
 	"homepage": "https://devtomio.github.io/sodium",
-	"commitlint": {
-		"extends": [
-			"@commitlint/config-conventional"
-		]
-	},
-	"lint-staged": {
-		"*.{mjs,js,ts}": "eslint --fix --ext mjs,js,ts"
-	},
-	"config": {
-		"commitizen": {
-			"path": "./node_modules/cz-conventional-changelog"
-		}
-	},
 	"publishConfig": {
 		"access": "public"
 	},
