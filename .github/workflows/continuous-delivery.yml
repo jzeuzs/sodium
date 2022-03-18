@@ -112,7 +112,7 @@ jobs:
             architecture: x64
             target: aarch64-pc-windows-msvc
             build: yarn rs:build --target aarch64-pc-windows-msvc
-    name: stable - ${{ matrix.settings.target }} - node@16
+    name: Stable - ${{ matrix.settings.target }} - Node.js@16
     runs-on: ${{ matrix.settings.host }}
     steps:
       - uses: actions/checkout@v2
