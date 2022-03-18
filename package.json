@@ -18,7 +18,6 @@
 				"aarch64-linux-android",
 				"x86_64-unknown-freebsd",
 				"aarch64-unknown-linux-musl",
-				"aarch64-pc-windows-msvc",
 				"armv7-linux-androideabi"
 			]
 		}
