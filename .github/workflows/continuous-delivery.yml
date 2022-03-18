@@ -3,7 +3,7 @@ env:
   DEBUG: napi:*
   APP_NAME: sodium
   MACOSX_DEPLOYMENT_TARGET: '10.13'
-  RUST_SODIUM_DISABLE_PIE: 1
+  SODIUM_DISABLE_PIE: 1
 
 'on':
   push:
