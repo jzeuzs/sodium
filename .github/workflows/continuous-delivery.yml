@@ -149,8 +149,6 @@ jobs:
         run: ${{ matrix.settings.setup }}
         if: ${{ matrix.settings.setup }}
         shell: bash
-      - name: Clean Cache
-        run: yarn cache clean --all
       - name: Install dependencies
         run: yarn install --immutable
       - name: Build
@@ -241,6 +239,8 @@ jobs:
           key: npm-cache-test-${{ matrix.settings.target }}-${{ matrix.node }}-${{ hashFiles('yarn.lock') }}
       - name: Install dependencies
         run: yarn install --immutable
+      - name: Build
+        run: yarn ts:build
       - name: Download artifacts
         uses: actions/download-artifact@v2
         with:
@@ -278,6 +278,8 @@ jobs:
           key: npm-cache-test-linux-x64-gnu-${{ matrix.node }}-${{ hashFiles('yarn.lock') }}
       - name: Install dependencies
         run: yarn install --immutable
+      - name: Build
+        run: yarn ts:build
       - name: Download artifacts
         uses: actions/download-artifact@v2
         with:
@@ -315,6 +317,8 @@ jobs:
           key: npm-cache-test-x86_64-unknown-linux-musl-${{ matrix.node }}-${{ hashFiles('yarn.lock') }}
       - name: Install dependencies
         run: yarn install --immutable
+      - name: Build
+        run: yarn ts:build
       - name: Download artifacts
         uses: actions/download-artifact@v2
         with:
@@ -355,6 +359,8 @@ jobs:
           key: npm-cache-test-linux-aarch64-gnu-${{ matrix.node }}-${{ hashFiles('yarn.lock') }}
       - name: Install dependencies
         run: yarn install --immutable
+      - name: Build
+        run: yarn ts:build
       - name: Setup and run tests
         uses: addnab/docker-run-action@v3
         with:
@@ -387,6 +393,8 @@ jobs:
           key: npm-cache-test-linux-aarch64-musl-${{ matrix.node }}-${{ hashFiles('yarn.lock') }}
       - name: Install dependencies
         run: yarn install --immutable
+      - name: Build
+        run: yarn ts:build
       - name: Setup and run tests
         uses: addnab/docker-run-action@v3
         with:
@@ -426,6 +434,8 @@ jobs:
           key: npm-cache-test-linux-arm-gnueabihf-${{ matrix.node }}-${{ hashFiles('yarn.lock') }}
       - name: Install dependencies
         run: yarn install --immutable
+      - name: Build
+        run: yarn ts:build
       - name: Setup and run tests
         uses: addnab/docker-run-action@v3
         with:
