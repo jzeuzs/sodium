@@ -221,7 +221,6 @@ jobs:
           - host: windows-latest
             target: x86_64-pc-windows-msvc
         node:
-          - '14'
           - '16'
     runs-on: ${{ matrix.settings.host }}
     steps:
@@ -259,7 +258,6 @@ jobs:
       fail-fast: false
       matrix:
         node:
-          - '14'
           - '16'
     runs-on: ubuntu-latest
     steps:
@@ -297,7 +295,6 @@ jobs:
       fail-fast: false
       matrix:
         node:
-          - '14'
           - '16'
     runs-on: ubuntu-latest
     steps:
@@ -335,7 +332,6 @@ jobs:
       fail-fast: false
       matrix:
         node:
-          - '14'
           - '16'
     runs-on: ubuntu-latest
     steps:
@@ -399,7 +395,9 @@ jobs:
           options: '-v ${{ github.workspace }}:/build -w /build'
           run: |
             set -e
-            apk add nodejs npm yarn
+            apk add npm yarn bash curl
+            curl https://get.volta.sh | bash
+            volta install node
             yarn test
   test-linux-arm-gnueabihf-binding:
     name: Test bindings on armv7-unknown-linux-gnueabihf - node@${{ matrix.node }}
