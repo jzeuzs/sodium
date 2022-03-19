@@ -5,7 +5,7 @@ fn main() {
 	if cfg!(target_env = "musl") {
 		let _ = std::process::Command::new("sh")
 			.arg("-c")
-			.arg("cp /usr/lib/libsodium.a target/release/deps")
+			.arg("cp /usr/lib/libsodium.a target/release/deps/libsodium.a")
 			.output()
 			.unwrap();
 	}
