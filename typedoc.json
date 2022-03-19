@@ -1,0 +1,8 @@
+{
+	"out": "./docs/",
+	"readme": "./README.md",
+	"name": "@devtomio/sodium",
+	"entryPoints": ["src/index.ts"],
+	"excludeExternals": true,
+	"tsconfig": "./lib/tsconfig.json"
+}

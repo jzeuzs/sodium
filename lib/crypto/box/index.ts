@@ -26,6 +26,24 @@ export const crypto_box_NONCEBYTES: number = box.noncebytes;
 export const crypto_box_PRECOMPUTEDKEYBYTES: number = box.precomputedkeybytes;
 
 /**
+ * Number of bytes in a PublicKey.
+ * @see https://docs.rs/sodiumoxide/0.2.7/sodiumoxide/crypto/box_/curve25519xsalsa20poly1305/constant.PUBLICKEYBYTES.html
+ */
+export const crypto_box_PUBLICKEYBYTES: number = box.publickeybytes;
+
+/**
+ * Number of bytes in a SecretKey.
+ * @see https://docs.rs/sodiumoxide/0.2.7/sodiumoxide/crypto/box_/curve25519xsalsa20poly1305/constant.SECRETKEYBYTES.html
+ */
+export const crypto_box_SECRETKEYBYTES: number = box.secretkeybytes;
+
+/**
+ * Number of bytes in a Seed.
+ * @see https://docs.rs/sodiumoxide/0.2.7/sodiumoxide/crypto/box_/curve25519xsalsa20poly1305/constant.SEEDBYTES.html
+ */
+export const crypto_box_SEEDBYTES: number = box.seedbytes;
+
+/**
  * Randomly generates a secret key and a corresponding public key.
  * @see https://docs.rs/sodiumoxide/0.2.7/sodiumoxide/crypto/box_/curve25519xsalsa20poly1305/fn.gen_keypair.html
  */
@@ -36,6 +54,12 @@ export const crypto_box_gen_keypair = (): KeyPair => box.gen_keypair();
  * @see https://docs.rs/sodiumoxide/0.2.7/sodiumoxide/crypto/box_/curve25519xsalsa20poly1305/fn.gen_nonce.html
  */
 export const crypto_box_gen_nonce = (): Uint8Array => box.gen_nonce();
+
+/**
+ * Deterministically derives a key pair from a single key seed (crypto_box_SEEDBYTES bytes).
+ * @see https://docs.rs/sodiumoxide/0.2.7/sodiumoxide/crypto/box_/curve25519xsalsa20poly1305/fn.keypair_from_seed.html
+ */
+export const crypto_keypair_from_seed = (seed: Uint8Array): KeyPair => box.keypair_from_seed(seed);
 
 /**
  * Verifies and decrypts a ciphertext using the receiver’s secret key, the senders public key, and a nonce. It returns a plaintext.
