@@ -15,7 +15,3 @@ napi-derive = "2.2.0"
 
 [build-dependencies]
 napi-build = "1.2.1"
-
-[profile.release]
-lto = true
-codegen-units = 1
