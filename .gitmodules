@@ -1,0 +1,3 @@
+[submodule "dryoc"]
+	path = dryoc
+	url = https://github.com/brndnmtthws/dryoc.git
