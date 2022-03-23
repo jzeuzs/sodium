@@ -61,15 +61,6 @@ jobs:
               aarch64-linux-gnu-strip *.node
           - host: ubuntu-latest
             architecture: x64
-            target: armv7-unknown-linux-gnueabihf
-            setup: |
-              sudo apt-get update
-              sudo apt-get install gcc-arm-linux-gnueabihf libc6-armhf-cross libc6-dev-armhf-cross -y
-            build: |
-              yarn rs:build --target=armv7-unknown-linux-gnueabihf
-              arm-linux-gnueabihf-strip *.node
-          - host: ubuntu-latest
-            architecture: x64
             target: aarch64-linux-android
             build: |
               export CARGO_TARGET_AARCH64_LINUX_ANDROID_LINKER="${ANDROID_NDK_HOME}/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android24-clang"
