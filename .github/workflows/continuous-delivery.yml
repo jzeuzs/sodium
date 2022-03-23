@@ -108,6 +108,11 @@ jobs:
           check-latest: true
           cache: yarn
           architecture: ${{ matrix.settings.architecture }}
+      - name: Clone dryoc
+        uses: actions/checkout@v2
+        with:
+          repository: 'brndnmtthws/dryoc'
+          path: dryoc
       - name: Install
         uses: actions-rs/toolchain@v1
         with:
