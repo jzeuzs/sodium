@@ -3,131 +3,109 @@ import { Box } from '../../bindings';
 const box = new Box();
 
 export interface KeyPair {
-	publicKey: Uint8Array;
-	secretKey: Uint8Array;
+	public_key: Uint8Array;
+	secret_key: Uint8Array;
 }
 
-/**
- * Number of bytes in the authenticator tag of an encrypted message i.e. the number of bytes by which the ciphertext is larger than the plaintext.
- * @see https://docs.rs/sodiumoxide/0.2.7/sodiumoxide/crypto/box_/curve25519xsalsa20poly1305/constant.MACBYTES.html
- */
-export const crypto_box_MACBYTES: number = box.macbytes;
+export interface CryptoBox {
+	ciphertext: Uint8Array;
+	mac: Uint8Array;
+}
+
+export const crypto_box_BEFORENMBYTES: number = box.cryptoBoxBeforenmbytes;
+export const crypto_box_MACBYTES: number = box.cryptoBoxMacbytes;
+export const crypto_box_MESSAGEBYTES_MAX: number = box.cryptoBoxMessagebytesMax;
+export const crypto_box_NONCEBYTES: number = box.cryptoBoxNoncebytes;
+export const crypto_box_PUBLICKEYBYTES: number = box.cryptoBoxPublickeybytes;
+export const crypto_box_SEALBYTES: number = box.cryptoBoxSealbytes;
+export const crypto_box_SECRETKEYBYTES: number = box.cryptoBoxSecretkeybytes;
+export const crypto_box_SEEDBYTES: number = box.cryptoBoxSeedbytes;
 
 /**
- * Number of bytes in a Nonce.
- * @see https://docs.rs/sodiumoxide/0.2.7/sodiumoxide/crypto/box_/curve25519xsalsa20poly1305/constant.NONCEBYTES.html
+ * Computes a shared secret for the given `public_key` and `private_key`. Resulting shared secret can be used with the precalculation interface.
+ * @see {@link https://docs.rs/dryoc/0.3.12/dryoc/classic/crypto_box/fn.crypto_box_beforenm.html crypto_box::crypto_box_beforenm}
  */
-export const crypto_box_NONCEBYTES: number = box.noncebytes;
+export const crypto_box_beforenm = (public_key: Uint8Array, secret_key: Uint8Array): Uint8Array => box.crypto_box_beforenm(public_key, secret_key);
 
 /**
- * Number of bytes in a PrecomputedKey.
- * @see https://docs.rs/sodiumoxide/0.2.7/sodiumoxide/crypto/box_/curve25519xsalsa20poly1305/constant.PRECOMPUTEDKEYBYTES.html
+ * Detached variant of {@link https://docs.rs/dryoc/0.3.12/dryoc/classic/crypto_box/fn.crypto_box_easy.html crypto_box_easy}.
+ * @see {@link https://docs.rs/dryoc/0.3.12/dryoc/classic/crypto_box/fn.crypto_box_detached.html crypto_box::crypto_box_detached}
  */
-export const crypto_box_PRECOMPUTEDKEYBYTES: number = box.precomputedkeybytes;
+export const crypto_box_detached = (
+	message: Uint8Array,
+	nonce: Uint8Array,
+	recipient_public_key: Uint8Array,
+	sender_secret_key: Uint8Array
+): CryptoBox => box.crypto_box_detached(message, nonce, recipient_public_key, sender_secret_key);
 
 /**
- * Number of bytes in a PublicKey.
- * @see https://docs.rs/sodiumoxide/0.2.7/sodiumoxide/crypto/box_/curve25519xsalsa20poly1305/constant.PUBLICKEYBYTES.html
+ * Encrypts `message` with recipient’s public key `recipient_public_key`, sender’s secret key `sender_secret_key`, and `nonce`. The result is placed into `ciphertext` which must be the length of the message plus {@link https://docs.rs/dryoc/0.3.12/dryoc/constants/constant.CRYPTO_BOX_MACBYTES.html CRYPTO_BOX_MACBYTES} bytes, for the message tag.
+ * @see {@link https://docs.rs/dryoc/0.3.12/dryoc/classic/crypto_box/fn.crypto_box_easy.html crypto_box::crypto_box_easy}
  */
-export const crypto_box_PUBLICKEYBYTES: number = box.publickeybytes;
+export const crypto_box_easy = (
+	message: Uint8Array,
+	nonce: Uint8Array,
+	recipient_public_key: Uint8Array,
+	sender_secret_key: Uint8Array
+): Uint8Array => box.crypto_box_easy(message, nonce, recipient_public_key, sender_secret_key);
 
 /**
- * Number of bytes in a SecretKey.
- * @see https://docs.rs/sodiumoxide/0.2.7/sodiumoxide/crypto/box_/curve25519xsalsa20poly1305/constant.SECRETKEYBYTES.html
+ * Generates a public/secret key pair using OS provided data.
+ * @see {@link https://docs.rs/dryoc/0.3.12/dryoc/classic/crypto_box/fn.crypto_box_keypair.html crypto_box::crypto_box_keypair}
  */
-export const crypto_box_SECRETKEYBYTES: number = box.secretkeybytes;
+export const crypto_box_keypair = (): KeyPair => box.crypto_box_keypair();
 
 /**
- * Number of bytes in a Seed.
- * @see https://docs.rs/sodiumoxide/0.2.7/sodiumoxide/crypto/box_/curve25519xsalsa20poly1305/constant.SEEDBYTES.html
+ * Generates a nonce.
  */
-export const crypto_box_SEEDBYTES: number = box.seedbytes;
+export const crypto_box_nonce = (): Uint8Array => box.crypto_box_nonce();
 
 /**
- * Randomly generates a secret key and a corresponding public key.
- * @see https://docs.rs/sodiumoxide/0.2.7/sodiumoxide/crypto/box_/curve25519xsalsa20poly1305/fn.gen_keypair.html
- */
-export const crypto_box_gen_keypair = (): KeyPair => box.gen_keypair();
-
-/**
- * Randomly generates a nonce.
- * @see https://docs.rs/sodiumoxide/0.2.7/sodiumoxide/crypto/box_/curve25519xsalsa20poly1305/fn.gen_nonce.html
- */
-export const crypto_box_gen_nonce = (): Uint8Array => box.gen_nonce();
-
-/**
- * Deterministically derives a key pair from a single key seed (crypto_box_SEEDBYTES bytes).
- * @see https://docs.rs/sodiumoxide/0.2.7/sodiumoxide/crypto/box_/curve25519xsalsa20poly1305/fn.keypair_from_seed.html
- */
-export const crypto_keypair_from_seed = (seed: Uint8Array): KeyPair => box.keypair_from_seed(seed);
-
-/**
- * Verifies and decrypts a ciphertext using the receiver’s secret key, the senders public key, and a nonce. It returns a plaintext.
- * @see https://docs.rs/sodiumoxide/0.2.7/sodiumoxide/crypto/box_/curve25519xsalsa20poly1305/fn.open.html
- */
-export const crypto_box_open = (cipher_text: Uint8Array, nonce: Uint8Array, public_key: Uint8Array, secret_key: Uint8Array): Uint8Array =>
-	box.open(cipher_text, nonce, public_key, secret_key);
-
-/**
- * Verifies and decrypts a ciphertext using the receiver’s secret key, the senders public key, and a nonce. The ciphertext is decrypted in place, so if this function is successful it will contain the plaintext.
- * @see https://docs.rs/sodiumoxide/0.2.7/sodiumoxide/crypto/box_/curve25519xsalsa20poly1305/fn.open_detached.html
+ * Detached variant of {@link https://docs.rs/dryoc/0.3.12/dryoc/classic/crypto_box/fn.crypto_box_open_easy.html crypto_box_open_easy}.
+ * @see {@link https://docs.rs/dryoc/0.3.12/dryoc/classic/crypto_box/fn.crypto_box_open_detached.html crypto_box::crypto_box_open_detached}
  */
 export const crypto_box_open_detached = (
-	cipher_text: Uint8Array,
 	mac: Uint8Array,
+	ciphertext: Uint8Array,
 	nonce: Uint8Array,
-	public_key: Uint8Array,
-	secret_key: Uint8Array
-): Uint8Array => box.open_detached(cipher_text, mac, nonce, public_key, secret_key);
+	recipient_public_key: Uint8Array,
+	sender_secret_key: Uint8Array
+): Uint8Array => box.crypto_box_open_detached(mac, ciphertext, nonce, recipient_public_key, sender_secret_key);
 
 /**
- * Verifies and decrypts a ciphertext using a precomputed key and a nonce. The ciphertext is decrypted in place, so if this function is successful it will contain the plaintext.
- * @see https://docs.rs/sodiumoxide/0.2.7/sodiumoxide/crypto/box_/curve25519xsalsa20poly1305/fn.open_detached_precomputed.html
+ * Precalculation variant of {@link https://docs.rs/dryoc/0.3.12/dryoc/classic/crypto_box/fn.crypto_box_open_easy.html crypto_box_open_easy}.
+ * @see {@link https://docs.rs/dryoc/0.3.12/dryoc/classic/crypto_box/fn.crypto_box_open_detached_afternm.html crypto_box::crypto_box_open_detached_afternm}
  */
-export const crypto_box_open_detached_precomputed = (
-	cipher_text: Uint8Array,
-	mac: Uint8Array,
+export const crypto_box_open_detached_afternm = (mac: Uint8Array, ciphertext: Uint8Array, nonce: Uint8Array, key: Uint8Array): Uint8Array =>
+	box.crypto_box_open_detached_afternm(mac, ciphertext, nonce, key);
+
+/**
+ * Decrypts `ciphertext` with recipient’s secret key `recipient_secret_key` and sender’s public key `sender_public_key` using `nonce`.
+ * @see {@link https://docs.rs/dryoc/0.3.12/dryoc/classic/crypto_box/fn.crypto_box_open_easy.html crypto_box::crypto_box_open_easy}
+ */
+export const crypto_box_open_easy = (
+	ciphertext: Uint8Array,
 	nonce: Uint8Array,
-	precomputed_key: Uint8Array
-): Uint8Array => box.open_detached_precomputed(cipher_text, mac, nonce, precomputed_key);
+	sender_public_key: Uint8Array,
+	recipient_secret_key: Uint8Array
+): Uint8Array => box.crypto_box_open_easy(ciphertext, nonce, sender_public_key, recipient_secret_key);
 
 /**
- * Verifies and decrypts a ciphertext using a precomputed key and a nonce. It returns a plaintext.
- * @see https://docs.rs/sodiumoxide/0.2.7/sodiumoxide/crypto/box_/curve25519xsalsa20poly1305/fn.open_precomputed.html
+ * Encrypts `message` with recipient’s public key `recipient_public_key`, using an ephemeral keypair and nonce. The length of `ciphertext` must be the length of the message plus {@link https://docs.rs/dryoc/0.3.12/dryoc/constants/constant.CRYPTO_BOX_SEALBYTES.html CRYPTO_BOX_SEALBYTES} bytes for the message tag and ephemeral public key.
+ * @see {@link https://docs.rs/dryoc/0.3.12/dryoc/classic/crypto_box/fn.crypto_box_seal.html crypto_box::crypto_box_seal}
  */
-export const crypto_box_open_precomputed = (cipher_text: Uint8Array, nonce: Uint8Array, precomputed_key: Uint8Array): Uint8Array =>
-	box.open_precomputed(cipher_text, nonce, precomputed_key);
+export const crypto_box_seal = (message: Uint8Array, recipient_public_key: Uint8Array): Uint8Array =>
+	box.crypto_box_seal(message, recipient_public_key);
 
 /**
- * Computes an intermediate key that can be used by seal_precomputed() and open_precomputed().
- * @see https://docs.rs/sodiumoxide/0.2.7/sodiumoxide/crypto/box_/curve25519xsalsa20poly1305/fn.precompute.html
+ * Decrypts a sealed box from `ciphertext` with recipient’s secret key `recipient_secret_key`, placing the result into `message`. The nonce and public are derived from `ciphertext`. `message` length should be equal to the length of `ciphertext` minus {@link https://docs.rs/dryoc/0.3.12/dryoc/constants/constant.CRYPTO_BOX_SEALBYTES.html CRYPTO_BOX_SEALBYTES} bytes for the message tag and ephemeral public key.
+ * @see {@link https://docs.rs/dryoc/0.3.12/dryoc/classic/crypto_box/fn.crypto_box_seal_open.html crypto_box::crypto_box_seal_open}
  */
-export const crypto_box_precompute = (public_key: Uint8Array, secret_key: Uint8Array): Uint8Array => box.precompute(public_key, secret_key);
+export const crypto_box_seal_open = (ciphertext: Uint8Array, recipient_public_key: Uint8Array, recipient_secret_key: Uint8Array): Uint8Array =>
+	box.crypto_box_seal_open(ciphertext, recipient_public_key, recipient_secret_key);
 
 /**
- * Encrypts and authenticates a message using the senders secret key, the receivers public key and a nonce. It returns a ciphertext.
- * @see https://docs.rs/sodiumoxide/0.2.7/sodiumoxide/crypto/box_/curve25519xsalsa20poly1305/fn.seal.html
+ * Deterministically derives a keypair from `seed`, which can be of arbitrary length.
+ * @see {@link https://docs.rs/dryoc/0.3.12/dryoc/classic/crypto_box/fn.crypto_box_seed_keypair.html crypto_box::crypto_box_seed_keypair}
  */
-export const crypto_box_seal = (message: Uint8Array, nonce: Uint8Array, public_key: Uint8Array, secret_key: Uint8Array): Uint8Array =>
-	box.seal(message, nonce, public_key, secret_key);
-
-/**
- * Encrypts and authenticates a message using the senders secret key, the receivers public key and a nonce. The message is encrypted in place, so after this function returns it will contain the ciphertext. The detached authentication tag is returned by value.
- * @see https://docs.rs/sodiumoxide/0.2.7/sodiumoxide/crypto/box_/curve25519xsalsa20poly1305/fn.seal_detached.html
- */
-export const crypto_box_seal_detached = (message: Uint8Array, nonce: Uint8Array, public_key: Uint8Array, secret_key: Uint8Array): Uint8Array =>
-	box.seal_detached(message, nonce, public_key, secret_key);
-
-/**
- * Encrypts and authenticates a message using a precomputed key and a nonce. The message is encrypted in place, so after this function returns it will contain the ciphertext. The detached authentication tag is returned by value.
- * @see https://docs.rs/sodiumoxide/0.2.7/sodiumoxide/crypto/box_/curve25519xsalsa20poly1305/fn.seal_detached_precomputed.html
- */
-export const crypto_box_seal_detached_precomputed = (message: Uint8Array, nonce: Uint8Array, precomputed_key: Uint8Array): Uint8Array =>
-	box.seal_detached_precomputed(message, nonce, precomputed_key);
-
-/**
- * Encrypts and authenticates a message using a precomputed key, and a nonce. It returns a ciphertext.
- * @see https://docs.rs/sodiumoxide/0.2.7/sodiumoxide/crypto/box_/curve25519xsalsa20poly1305/fn.seal_precomputed.html
- */
-export const crypto_box_seal_precomputed = (message: Uint8Array, nonce: Uint8Array, precomputed_key: Uint8Array): Uint8Array =>
-	box.seal_precomputed(message, nonce, precomputed_key);
+export const crypto_box_seed_keypair = (seed: Uint8Array): KeyPair => box.crypto_box_seed_keypair(seed);

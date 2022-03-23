@@ -204,6 +204,6 @@ const loadBinding = () => {
 };
 
 const bindings: { [key: string]: any } = loadBinding();
-const { Box } = bindings;
+const { Box, create_external_uint8array, get_external_uint8array } = bindings;
 
-export { Box };
+export { Box, create_external_uint8array, get_external_uint8array };

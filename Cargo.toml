@@ -9,9 +9,12 @@ edition = "2021"
 crate-type = ["cdylib"]
 
 [dependencies]
-sodiumoxide = { git = "https://github.com/devtomio/sodiumoxide", branch = "master" }
 napi = "2.2.0"
 napi-derive = "2.2.0"
+dryoc = { path = "./dryoc" }
 
 [build-dependencies]
 napi-build = "1.2.1"
+
+[profile.release]
+lto = true

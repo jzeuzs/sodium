@@ -10,7 +10,7 @@ void suite(
 		libsodiumWrappers.crypto_box_keypair();
 	}),
 	add('tweetnacl', () => tweetnacl.box.keyPair()),
-	add('@devtomio/sodium', () => sodium.crypto_box_gen_keypair()),
+	add('@devtomio/sodium', () => sodium.crypto_box_keypair()),
 	cycle(),
 	complete()
 );
