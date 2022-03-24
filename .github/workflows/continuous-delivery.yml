@@ -81,42 +81,42 @@ jobs:
     name: Nightly - ${{ matrix.settings.target }} - node@16
     runs-on: ${{ matrix.settings.host }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # tag=v2
       - name: Setup node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@1f8c6b94b26d0feae1e387ca63ccbdc44d27b561 # tag=v2
         with:
           node-version: 16
           check-latest: true
           cache: yarn
           architecture: ${{ matrix.settings.architecture }}
       - name: Clone dryoc
-        uses: actions/checkout@v2
+        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # tag=v2
         with:
           repository: 'brndnmtthws/dryoc'
           path: dryoc
       - name: Install
-        uses: actions-rs/toolchain@v1
+        uses: actions-rs/toolchain@16499b5e05bf2e26879000db0c1d13f7e13fa3af # tag=v1
         with:
           profile: minimal
           override: true
           toolchain: stable
           target: ${{ matrix.settings.target }}
       - name: Generate Cargo.lock
-        uses: actions-rs/cargo@v1
+        uses: actions-rs/cargo@844f36862e911db73fe0815f00a4a2602c279505 # tag=v1
         with:
           command: generate-lockfile
       - name: Cache cargo registry
-        uses: actions/cache@v2
+        uses: actions/cache@937d24475381cd9c75ae6db12cb4e79714b926ed # tag=v2
         with:
           path: ~/.cargo/registry
           key: ${{ matrix.settings.target }}-node@16-cargo-registry-trimmed-${{ hashFiles('**/Cargo.lock') }}
       - name: Cache cargo index
-        uses: actions/cache@v2
+        uses: actions/cache@937d24475381cd9c75ae6db12cb4e79714b926ed # tag=v2
         with:
           path: ~/.cargo/git
           key: ${{ matrix.settings.target }}-node@16-cargo-index-trimmed-${{ hashFiles('**/Cargo.lock') }}
       - name: Cache NPM dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@937d24475381cd9c75ae6db12cb4e79714b926ed # tag=v2
         with:
           path: node_modules
           key: npm-cache-${{ matrix.settings.target }}-node@16-${{ hashFiles('yarn.lock') }}
@@ -135,7 +135,7 @@ jobs:
         run: ${{ matrix.settings.build }}
         shell: bash
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@82c141cc518b40d92cc801eee768e7aafc9c2fa2 # tag=v2
         with:
           name: bindings-${{ matrix.settings.target }}
           path: ${{ env.APP_NAME }}.*.node
@@ -144,10 +144,10 @@ jobs:
     runs-on: macos-10.15
     name: Build FreeBSD
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # tag=v2
       - name: Build
         id: build
-        uses: vmactions/freebsd-vm@v0.1.5
+        uses: vmactions/freebsd-vm@180fe5cb38b8fb6c4439b61e52ddbd1678156a5f # tag=v0.1.5
         env:
           DEBUG: napi:*
           RUSTUP_HOME: /usr/local/rustup
@@ -185,7 +185,7 @@ jobs:
             rm -rf node_modules
             rm -rf target
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@82c141cc518b40d92cc801eee768e7aafc9c2fa2 # tag=v2
         with:
           name: bindings-freebsd
           path: ${{ env.APP_NAME }}.*.node
@@ -196,15 +196,15 @@ jobs:
     needs:
       - build-freebsd
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # tag=v2
       - name: Setup node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@1f8c6b94b26d0feae1e387ca63ccbdc44d27b561 # tag=v2
         with:
           node-version: 16
           check-latest: true
           cache: yarn
       - name: Cache NPM dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@937d24475381cd9c75ae6db12cb4e79714b926ed # tag=v2
         with:
           path: node_modules
           key: npm-cache-ubuntu-latest-${{ hashFiles('yarn.lock') }}
@@ -213,7 +213,7 @@ jobs:
       - name: Install dependencies
         run: yarn install --immutable
       - name: Download all artifacts
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@f023be2c48cc18debc3bacd34cb396e0295e2869 # tag=v2
         with:
           path: artifacts
       - name: Move artifacts
