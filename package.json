@@ -37,12 +37,14 @@
 		"cz": "git-cz",
 		"prepublishOnly": "yarn build && napi prepublish -t npm",
 		"version": "napi version",
-		"bench": "node -r @swc-node/register benchmark/bench.ts"
+		"bench": "node -r @swc-node/register benchmark/bench.ts",
+		"npm:publish": "node scripts/publish.mjs"
 	},
 	"dependencies": {
 		"tslib": "^2.3.1"
 	},
 	"devDependencies": {
+		"@jsdevtools/npm-publish": "^1.4.3",
 		"@napi-rs/cli": "^2.4.5",
 		"@sapphire/eslint-config": "^4.3.0",
 		"@sapphire/prettier-config": "^1.4.0",
@@ -59,9 +61,11 @@
 		"eslint": "^8.11.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-prettier": "^4.0.0",
+		"git-last-commit": "^1.0.1",
 		"libsodium-wrappers": "^0.7.9",
 		"lint-staged": "^12.3.6",
 		"prettier": "^2.6.0",
+		"semver-regex": "^4.0.2",
 		"tweetnacl": "^1.0.3",
 		"typedoc": "^0.22.13",
 		"typedoc-plugin-mdn-links": "^1.0.5",

@@ -1,4 +1,4 @@
 {
 	"extends": "./tsconfig.base.json",
-	"include": ["lib", "tests", "jest.config.ts", "benchmark"]
+	"include": ["lib", "tests", "jest.config.ts", "benchmark", "scripts"]
 }
