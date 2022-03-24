@@ -1,3 +1,3 @@
 # sodium
 
-Libsodium bindings for Node.js
+Libsodium for Node.js
