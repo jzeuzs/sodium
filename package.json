@@ -46,9 +46,9 @@
 	"devDependencies": {
 		"@jsdevtools/npm-publish": "^1.4.3",
 		"@napi-rs/cli": "^2.4.5",
-		"@sapphire/eslint-config": "^4.3.0",
-		"@sapphire/prettier-config": "^1.4.0",
-		"@sapphire/ts-config": "^3.3.2",
+		"@sapphire/eslint-config": "^4.3.2",
+		"@sapphire/prettier-config": "^1.4.1",
+		"@sapphire/ts-config": "^3.3.3",
 		"@swc-node/register": "^1.4.2",
 		"@types/eslint": "^8",
 		"@types/jest": "^27.4.1",
