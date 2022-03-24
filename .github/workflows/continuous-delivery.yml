@@ -147,7 +147,7 @@ jobs:
       - uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # tag=v2
       - name: Build
         id: build
-        uses: vmactions/freebsd-vm@180fe5cb38b8fb6c4439b61e52ddbd1678156a5f # tag=v0.1.5
+        uses: vmactions/freebsd-vm@45665d548dfeadbbebb5bb7971150211525fee46 # tag=v0.1.6
         env:
           DEBUG: napi:*
           RUSTUP_HOME: /usr/local/rustup
