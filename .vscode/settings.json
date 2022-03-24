@@ -1,25 +1,25 @@
 {
-    "cSpell.words": [
-        "addnab",
-        "armhf",
-        "automake",
-        "brooooooklyn",
-        "deps",
-        "elif",
-        "libc",
-        "multiarch",
-        "noreply",
-        "npmjs",
-        "npmrc",
-        "peaceiris",
-        "pkgconfig",
-        "rustc",
-        "rustup",
-        "RUSTUP",
-        "SEALBYTES",
-        "SYSROOT",
-        "toolchains",
-        "usesh",
-        "vmactions"
-    ]
+	"cSpell.words": [
+		"addnab",
+		"armhf",
+		"automake",
+		"brooooooklyn",
+		"deps",
+		"elif",
+		"libc",
+		"multiarch",
+		"noreply",
+		"npmjs",
+		"npmrc",
+		"peaceiris",
+		"pkgconfig",
+		"rustc",
+		"rustup",
+		"RUSTUP",
+		"SEALBYTES",
+		"SYSROOT",
+		"toolchains",
+		"usesh",
+		"vmactions"
+	]
 }

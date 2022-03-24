@@ -1,9 +1,9 @@
+use crate::{create_arr_with_length, vec_arr_func};
 use dryoc::classic::crypto_box;
-use dryoc::types::*;
 use dryoc::constants::*;
+use dryoc::types::*;
 use napi::bindgen_prelude::*;
 use std::ops::Deref;
-use crate::{vec_arr_func, create_arr_with_length};
 
 vec_arr_func!(to_public_key, u8, 32);
 vec_arr_func!(to_secret_key, u8, 32);
@@ -230,43 +230,43 @@ impl SodiumBox {
         }
     }
 
-	#[napi(getter)]
-	pub fn crypto_box_beforenmbytes(&self) -> u32 {
-		CRYPTO_BOX_BEFORENMBYTES as u32
-	}
+    #[napi(getter)]
+    pub fn crypto_box_beforenmbytes(&self) -> u32 {
+        CRYPTO_BOX_BEFORENMBYTES as u32
+    }
 
-	#[napi(getter)]
-	pub fn crypto_box_macbytes(&self) -> u32 {
-		CRYPTO_BOX_MACBYTES as u32
-	}
+    #[napi(getter)]
+    pub fn crypto_box_macbytes(&self) -> u32 {
+        CRYPTO_BOX_MACBYTES as u32
+    }
 
-	#[napi(getter)]
-	pub fn crypto_box_messagebytes_max(&self) -> u32 {
-		CRYPTO_BOX_MESSAGEBYTES_MAX as u32
-	}
+    #[napi(getter)]
+    pub fn crypto_box_messagebytes_max(&self) -> u32 {
+        CRYPTO_BOX_MESSAGEBYTES_MAX as u32
+    }
 
-	#[napi(getter)]
-	pub fn crypto_box_noncebytes(&self) -> u32 {
-		CRYPTO_BOX_NONCEBYTES as u32
-	}
+    #[napi(getter)]
+    pub fn crypto_box_noncebytes(&self) -> u32 {
+        CRYPTO_BOX_NONCEBYTES as u32
+    }
 
-	#[napi(getter)]
-	pub fn crypto_box_publickeybytes(&self) -> u32 {
-		CRYPTO_BOX_PUBLICKEYBYTES as u32
-	}
+    #[napi(getter)]
+    pub fn crypto_box_publickeybytes(&self) -> u32 {
+        CRYPTO_BOX_PUBLICKEYBYTES as u32
+    }
 
-	#[napi(getter)]
-	pub fn crypto_box_sealbytes(&self) -> u32 {
-		CRYPTO_BOX_SEALBYTES as u32
-	}
+    #[napi(getter)]
+    pub fn crypto_box_sealbytes(&self) -> u32 {
+        CRYPTO_BOX_SEALBYTES as u32
+    }
 
-	#[napi(getter)]
-	pub fn crypto_box_secretkeybytes(&self) -> u32 {
-		CRYPTO_BOX_SECRETKEYBYTES as u32
-	}
+    #[napi(getter)]
+    pub fn crypto_box_secretkeybytes(&self) -> u32 {
+        CRYPTO_BOX_SECRETKEYBYTES as u32
+    }
 
-	#[napi(getter)]
-	pub fn crypto_box_seedbytes(&self) -> u32 {
-		CRYPTO_BOX_SEEDBYTES as u32
-	}
+    #[napi(getter)]
+    pub fn crypto_box_seedbytes(&self) -> u32 {
+        CRYPTO_BOX_SEEDBYTES as u32
+    }
 }

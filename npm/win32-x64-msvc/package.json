@@ -1,6 +1,6 @@
 {
 	"name": "@devtomio/sodium-win32-x64-msvc",
-	"version": "0.0.1",
+	"version": "0.1.0",
 	"os": [
 		"win32"
 	],
@@ -11,7 +11,7 @@
 	"files": [
 		"sodium.win32-x64-msvc.node"
 	],
-	"description": "Libsodium bindings for Node.js",
+	"description": "Libsodium for Node.js",
 	"keywords": [
 		"sodium",
 		"libsodium",
