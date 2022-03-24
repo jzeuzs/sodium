@@ -35,7 +35,7 @@
 		"watch": "tsc -b lib -w",
 		"commit": "git-cz",
 		"cz": "git-cz",
-		"prepublishOnly": "yarn build && napi prepublish -t npm",
+		"prepublishOnly": "yarn ts:build && napi prepublish -t npm",
 		"version": "napi version",
 		"bench": "node -r @swc-node/register benchmark/bench.ts",
 		"npm:publish": "node scripts/publish.mjs"
@@ -61,7 +61,6 @@
 		"eslint": "^8.11.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-prettier": "^4.0.0",
-		"git-last-commit": "^1.0.1",
 		"libsodium-wrappers": "^0.7.9",
 		"lint-staged": "^12.3.6",
 		"prettier": "^2.6.0",

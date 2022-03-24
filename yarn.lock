@@ -70,7 +70,6 @@ __metadata:
     eslint: ^8.11.0
     eslint-config-prettier: ^8.5.0
     eslint-plugin-prettier: ^4.0.0
-    git-last-commit: ^1.0.1
     libsodium-wrappers: ^0.7.9
     lint-staged: ^12.3.6
     prettier: ^2.6.0
@@ -1262,13 +1261,6 @@ __metadata:
   version: 6.0.1
   resolution: "get-stream@npm:6.0.1"
   checksum: e04ecece32c92eebf5b8c940f51468cd53554dcbb0ea725b2748be583c9523d00128137966afce410b9b051eb2ef16d657cd2b120ca8edafcf5a65e81af63cad
-  languageName: node
-  linkType: hard
-
-"git-last-commit@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "git-last-commit@npm:1.0.1"
-  checksum: 44049215f0838c0d17edd25b44e08793d270ea96d95e56767ae9564eda2f41cf4a63b4bc418d62c2f3a8f6a483d6e12229c316daa4276dc0fef8ad663145af6c
   languageName: node
   linkType: hard
 
