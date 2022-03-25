@@ -1,3 +1,3 @@
 import conventionalChangelog from 'conventional-changelog';
 
-conventionalChangelog({ preset: 'angular' }).pipe(process.stdout);
+conventionalChangelog({ preset: 'angular', outputUnreleased: true }).pipe(process.stdout);
