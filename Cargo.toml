@@ -11,7 +11,8 @@ crate-type = ["cdylib"]
 [dependencies]
 napi = "2.2.0"
 napi-derive = "2.2.0"
-dryoc = { path = "./dryoc" }
+sodiumoxide = "0.2.7"
+dryoc = { git = "https://github.com/brndnmtthws/dryoc" }
 
 [build-dependencies]
 napi-build = "1.2.1"
