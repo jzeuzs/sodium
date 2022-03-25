@@ -1,4 +1,3 @@
 import conventionalChangelog from 'conventional-changelog';
-import { stdout } from 'node:process';
 
-conventionalChangelog().pipe(stdout);
+conventionalChangelog({ preset: 'angular' }).pipe(process.stdout);
