@@ -1,4 +1,4 @@
-import { Box } from '../../bindings';
+import { Box } from '../bindings';
 
 const box = new Box();
 

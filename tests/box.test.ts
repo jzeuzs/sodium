@@ -39,7 +39,7 @@ const alicesk = Buffer.from(aliceskA);
 const bobpk = Buffer.from(bobpkA);
 const cipherText = Buffer.from(cipherTextA);
 
-describe('crypto box tests', () => {
+describe('box tests', () => {
 	it('should encrypt to known cipher text', () => {
 		const cipher = sodium.crypto_box_easy(plainText, nonce, bobpk, alicesk);
 
@@ -51,12 +51,7 @@ describe('crypto box tests', () => {
 		const aliceKeypair = sodium.crypto_box_keypair();
 		const bobKeypair = sodium.crypto_box_keypair();
 		const nonce = sodium.crypto_box_nonce();
-
-		console.log(aliceKeypair.secret_key);
-		console.log(nonce);
-
 		const ciphertext = sodium.crypto_box_easy(Buffer.from(plaintext), nonce, bobKeypair.public_key, aliceKeypair.secret_key);
-		console.log(ciphertext.length);
 		const decrypted = Buffer.from(sodium.crypto_box_open_easy(ciphertext, nonce, aliceKeypair.public_key, bobKeypair.secret_key));
 
 		expect(decrypted.toString('hex')).toBe(Buffer.from(plaintext).toString('hex'));

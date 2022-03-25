@@ -1,11 +1,6 @@
-use crate::{create_arr_with_length, vec_arr_func};
-use dryoc::classic::crypto_secretbox;
-use sodiumoxide::crypto::secretbox;
-use dryoc::constants::*;
 use napi::bindgen_prelude::*;
-
-vec_arr_func!(to_nonce, u8, 24);
-vec_arr_func!(to_key, u8, 32);
+use sodiumoxide::{crypto::secretbox, init};
+use std::ops::DerefMut;
 
 #[napi(object, js_name = "Secret_Box")]
 #[allow(non_camel_case_types)]
@@ -21,45 +16,90 @@ pub struct SecretBox {}
 impl SecretBox {
     #[napi(constructor)]
     pub fn new() -> Self {
+        init().unwrap();
         SecretBox {}
     }
 
     #[napi(js_name = "crypto_secretbox_detached")]
     pub fn crypto_secretbox_detached(
         &self,
-        message: Uint8Array,
-        nonce: Uint8Array,
-        key: Uint8Array,
+        mut m: Uint8Array,
+        n: Uint8Array,
+        k: Uint8Array,
     ) -> Secret_Box {
-        let mut cipher: Vec<u8> = vec![];
-        let mut mac = create_arr_with_length!(16);
-
-        crypto_secretbox::crypto_secretbox_detached(
-            &mut cipher,
-            &mut mac,
-            &message,
-            &to_nonce(&nonce),
-            &to_key(&key),
+        let mut ms = m.deref_mut();
+        let mac = secretbox::seal_detached(
+            &mut ms,
+            &secretbox::Nonce::from_slice(&n).unwrap(),
+            &secretbox::Key::from_slice(&k).unwrap(),
         );
 
         Secret_Box {
-            ciphertext: Uint8Array::new(cipher),
-            mac: Uint8Array::new(mac.to_vec()),
+            ciphertext: Uint8Array::new(ms.to_vec()),
+            mac: Uint8Array::new(mac.as_ref().to_vec()),
         }
     }
 
     #[napi(js_name = "crypto_secretbox_easy")]
-    pub fn crypto_secretbox_easy(
+    pub fn crypto_secretbox_easy(&self, m: Uint8Array, n: Uint8Array, k: Uint8Array) -> Uint8Array {
+        let c = secretbox::seal(
+            &m,
+            &secretbox::Nonce::from_slice(&n).unwrap(),
+            &secretbox::Key::from_slice(&k).unwrap(),
+        );
+
+        Uint8Array::new(c)
+    }
+
+    #[napi(js_name = "crypto_secretbox_keygen")]
+    pub fn crypto_secretbox_keygen(&self) -> Uint8Array {
+        let k = secretbox::gen_key();
+
+        Uint8Array::new(k.as_ref().to_vec())
+    }
+
+    #[napi(js_name = "crypto_secretbox_nonce")]
+    pub fn crypto_secretbox_nonce(&self) -> Uint8Array {
+        let n = secretbox::gen_nonce();
+
+        Uint8Array::new(n.as_ref().to_vec())
+    }
+
+    #[napi(js_name = "crypto_secretbox_open_detached")]
+    pub fn crypto_secretbox_open_detached(
         &self,
-        message: Uint8Array,
-        nonce: Uint8Array,
-        key: Uint8Array,
+        mut c: Uint8Array,
+        mac: Uint8Array,
+        n: Uint8Array,
+        k: Uint8Array,
     ) -> Uint8Array {
-        let mut c: Vec<u8> = vec![];
+        let mut ct = c.deref_mut();
 
-        crypto_secretbox::crypto_secretbox_easy(&mut c, &message, &to_nonce(&nonce), &to_key(&key))
-            .unwrap();
+        secretbox::open_detached(
+            &mut ct,
+            &secretbox::Tag::from_slice(&mac).unwrap(),
+            &secretbox::Nonce::from_slice(&n).unwrap(),
+            &secretbox::Key::from_slice(&k).unwrap(),
+        )
+        .unwrap();
 
-        Uint8Array::new(c.to_vec())
+        Uint8Array::new(ct.to_vec())
+    }
+
+    #[napi(js_name = "crypto_secretbox_open_easy")]
+    pub fn crypto_secretbox_open_easy(
+        &self,
+        c: Uint8Array,
+        n: Uint8Array,
+        k: Uint8Array,
+    ) -> Uint8Array {
+        let pt = secretbox::open(
+            &c,
+            &secretbox::Nonce::from_slice(&n).unwrap(),
+            &secretbox::Key::from_slice(&k).unwrap(),
+        )
+        .unwrap();
+
+        Uint8Array::new(pt)
     }
 }
