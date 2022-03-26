@@ -8,6 +8,6 @@ RUN VERS=1.0.18 && \
     cd /home/rust/libs && \
     curl -LO https://download.libsodium.org/libsodium/releases/libsodium-$VERS.tar.gz && \
     tar xzf libsodium-$VERS.tar.gz && cd libsodium-$VERS && \
-    CC=musl-gcc ./configure --static --prefix=/usr/local/musl && \
+    CC=musl-gcc ./configure --with-pic --disable-pie --enable-static --prefix=/usr/local/musl && \
     make && sudo make install && \
     cd .. && rm -rf zlib-$VERS.tar.gz zlib-$Vers
