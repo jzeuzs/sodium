@@ -11,11 +11,16 @@ crate-type = ["cdylib"]
 [dependencies]
 napi = "2.2.0"
 napi-derive = "2.2.0"
-sodiumoxide = { git = "https://github.com/devtomio/sodiumoxide" }
+sodiumoxide = { git = "https://github.com/devtomio/sodiumoxide", rev = "8f5ce6b" }
 dryoc = { git = "https://github.com/brndnmtthws/dryoc" }
 
 [build-dependencies]
 napi-build = "1.2.1"
 
 [profile.release]
-lto = true
+lto = "fat"
+codegen-units = 1
+opt-level = 3
+panic = "abort"
+overflow-checks = false
+debug = true
