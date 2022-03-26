@@ -1,8 +1,14 @@
 FROM ekidd/rust-musl-builder
 
+ENV PATH="/aarch64-linux-musl-cross/bin:/usr/local/cargo/bin/rustup:/root/.cargo/bin:$PATH"
+
 RUN curl -fsSL https://deb.nodesource.com/setup_17.x | sudo -E bash - && \
     sudo apt-get install -y nodejs && \
     sudo npm i -g yarn pnpm
+
+RUN wget https://musl.cc/aarch64-linux-musl-cross.tgz && \
+    tar -xvf aarch64-linux-musl-cross.tgz && \
+    rm aarch64-linux-musl-cross.tgz
 
 RUN VERS=1.0.18 && \
     cd /home/rust/libs && \
