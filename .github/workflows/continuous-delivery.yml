@@ -214,6 +214,8 @@ jobs:
         run: yarn artifacts
       - name: List packages
         run: ls -R ./npm
+      - name: Install missing
+        run: apt-get install musl-dev && ln -s /usr/lib/x86_64-linux-musl/libc.so /lib/libc.musl-x86_64.so.1
       - name: Build Typescript
         run: yarn ts:build
         shell: bash
