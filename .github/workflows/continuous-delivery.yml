@@ -77,7 +77,7 @@ jobs:
               docker pull ghcr.io/devtomio/sodium/nodejs-rust:lts-aarch64
               docker tag ghcr.io/devtomio/sodium/nodejs-rust:lts-aarch64 builder
             build: |
-              docker run --rm -v ~/.cargo/git:/root/.cargo/git -v ~/.cargo/registry:/root/.cargo/registry -v $(pwd):/build -w /build builder sh -c "rustup toolchain install $(cat ./rust-toolchain) && rustup target add aarch64-unknown-linux-musl && SODIUM_LIB_DIR='/usr/local/musl/lib' SODIUM_SHARED=1 RUSTFLAGS='-C link_arg=-lgcc' yarn rs:build --target=aarch64-unknown-linux-musl && /aarch64-linux-musl-cross/bin/aarch64-linux-musl-strip *.node"
+              docker run --rm -v ~/.cargo/git:/root/.cargo/git -v ~/.cargo/registry:/root/.cargo/registry -v $(pwd):/build -w /build builder sh -c "sudo rustup toolchain install $(cat ./rust-toolchain) && sudo rustup target add aarch64-unknown-linux-musl && SODIUM_LIB_DIR='/usr/local/musl/lib' SODIUM_SHARED=1 RUSTFLAGS='-C link_arg=-lgcc' yarn rs:build --target=aarch64-unknown-linux-musl && /aarch64-linux-musl-cross/bin/aarch64-linux-musl-strip *.node"
     name: Nightly - ${{ matrix.settings.target }} - node@16
     runs-on: ${{ matrix.settings.host }}
     steps:
