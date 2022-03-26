@@ -33,6 +33,6 @@ RUN rustup-init -y && \
 RUN VERS=1.0.18 && \
     curl -LO https://download.libsodium.org/libsodium/releases/libsodium-$VERS.tar.gz && \
     tar xzf libsodium-$VERS.tar.gz && cd libsodium-$VERS && \
-    CC=musl-gcc ./configure --with-pic --disable-pie --disable-shared --enable-static=yes && \
+    CC=aarch64-linux-musl-gcc ./configure --with-pic --disable-pie --disable-shared --enable-static=yes && \
     make && sudo make install && \
     cd .. && rm -rf zlib-$VERS.tar.gz zlib-$Vers
