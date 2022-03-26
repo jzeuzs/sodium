@@ -27,7 +27,7 @@ RUN rustup-init -y && \
   rustup target add aarch64-unknown-linux-musl && \
   wget https://musl.cc/aarch64-linux-musl-cross.tgz && \
   tar -xvf aarch64-linux-musl-cross.tgz && \
-  rm aarch64-linux-musl-cross.tgzrm aarch64-linux-musl-cross.tgz
+  rm aarch64-linux-musl-cross.tgz
 
 RUN VERS=1.0.18 && \
     curl -LO https://download.libsodium.org/libsodium/releases/libsodium-$VERS.tar.gz && \
