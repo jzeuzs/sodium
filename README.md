@@ -5,6 +5,8 @@
 **<a href="https://libsodium.gitbook.io">Libsodium</a> for <a href="https://nodejs.org">Node.js</a>**
 
 [![GitHub](https://img.shields.io/github/license/devtomio/sodium)](https://github.com/devtomio/sodium/blob/main/LICENSE)
+[![Continuous Delivery](https://github.com/devtomio/sodium/actions/workflows/continuous-delivery.yml/badge.svg)](https://github.com/devtomio/sodium/actions/workflows/continuous-delivery.yml)
+[![Continuous Integration](https://github.com/devtomio/sodium/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/devtomio/sodium/actions/workflows/continuous-integration.yml)
 [![npm](https://img.shields.io/npm/v/@devtomio/sodium?color=crimson&logo=npm&style=flat-square)](https://www.npmjs.com/package/@devtomio/sodium)
 
 **Packages**
