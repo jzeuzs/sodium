@@ -18,12 +18,12 @@ RUN apk add --update --no-cache wget musl-dev && \
     libstdc++ \
     curl \
     ninja && \
-    apk upgrade && \
-    npm install -g pnpm lerna
+    apk upgrade
 
 RUN curl -fLO https://github.com/oznu/alpine-node/releases/download/16.14.0/node-v16.14.0-linux-aarch64-alpine.tar.gz && \
     tar -xvf node-v16.14.0-linux-aarch64-alpine.tar.gz -C /usr --strip-components=1 --no-same-owner && \
-    rm -rf node-v16.14.0-linux-aarch64-alpine.tar.gz
+    rm -rf node-v16.14.0-linux-aarch64-alpine.tar.gz && \
+    npm install -g pnpm lerna yarn
 
 RUN rustup update nightly && \
     rustup target add --toolchain beta aarch64-unknown-linux-musl
