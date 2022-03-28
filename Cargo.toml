@@ -1,6 +1,6 @@
 [package]
 name = "sodium"
-version = "0.2.3"
+version = "0.3.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
@@ -9,10 +9,11 @@ edition = "2021"
 crate-type = ["cdylib"]
 
 [dependencies]
-napi = "2.2.0"
+napi = { version = "2.2.0", features = ["napi6"] }
 napi-derive = "2.2.0"
-sodiumoxide = { git = "https://github.com/devtomio/sodiumoxide" }
+sodiumoxide = { git = "https://github.com/devtomio/sodiumoxide", branch = "master" }
 dryoc = { git = "https://github.com/brndnmtthws/dryoc" }
+libc = "0.2.121"
 
 [build-dependencies]
 napi-build = "1.2.1"

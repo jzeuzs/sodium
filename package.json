@@ -1,6 +1,6 @@
 {
 	"name": "@devtomio/sodium",
-	"version": "0.2.3",
+	"version": "0.3.0",
 	"description": "Libsodium for Node.js",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
@@ -60,6 +60,7 @@
 		"@sapphire/prettier-config": "^1.4.1",
 		"@sapphire/ts-config": "^3.3.3",
 		"@swc-node/register": "^1.4.2",
+		"@types/chloride": "^2.4.0",
 		"@types/conventional-changelog": "^3",
 		"@types/eslint": "^8",
 		"@types/jest": "^27.4.1",
@@ -69,6 +70,7 @@
 		"@typescript-eslint/eslint-plugin": "^5.16.0",
 		"@typescript-eslint/parser": "^5.16.0",
 		"benny": "^3.7.1",
+		"chloride": "^2.4.1",
 		"conventional-changelog": "^3.1.25",
 		"cross-env": "^7.0.3",
 		"eslint": "^8.12.0",

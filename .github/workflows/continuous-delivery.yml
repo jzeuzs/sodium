@@ -37,7 +37,7 @@ jobs:
               docker pull $DOCKER_REGISTRY_URL/napi-rs/napi-rs/nodejs-rust:lts-debian
               docker tag $DOCKER_REGISTRY_URL/napi-rs/napi-rs/nodejs-rust:lts-debian builder
             build: |
-              docker run --rm -v ~/.cargo/git:/root/.cargo/git -v ~/.cargo/registry:/root/.cargo/registry -v $(pwd):/build -w /build builder yarn rs:build && strip *.node
+              docker run --rm -v ~/.cargo/git:/root/.cargo/git -v ~/.cargo/registry:/root/.cargo/registry -v $(pwd):/build -w /build builder sh -c "apt-get install -y libsodium-dev pkg-config && CC=gcc yarn rs:build --target x86_64-unknown-linux-gnu && strip *.node"
           - host: ubuntu-latest
             target: x86_64-unknown-linux-musl
             architecture: x64
@@ -82,6 +82,8 @@ jobs:
     runs-on: ${{ matrix.settings.host }}
     steps:
       - uses: actions/checkout@a12a3943b4bdde767164f792f33f40b04645d846 # tag=v3
+        with:
+          submodules: recursive
       - name: Setup node
         uses: actions/setup-node@9ced9a43a244f3ac94f13bfd896db8c8f30da67a # tag=v3
         with:

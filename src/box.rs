@@ -1,4 +1,4 @@
-use crate::vec_arr_func;
+use crate::{vec_arr_func, types::KeyPair};
 use dryoc::classic::crypto_box::{
     crypto_box_seal as box_seal, crypto_box_seal_open as box_seal_open,
 };
@@ -10,14 +10,6 @@ use std::ops::{Deref, DerefMut};
 
 vec_arr_func!(to_public_key, u8, CRYPTO_BOX_PUBLICKEYBYTES);
 vec_arr_func!(to_secret_key, u8, CRYPTO_BOX_SECRETKEYBYTES);
-
-#[napi(object)]
-pub struct KeyPair {
-    #[napi(js_name = "public_key")]
-    pub public_key: Uint8Array,
-    #[napi(js_name = "secret_key")]
-    pub secret_key: Uint8Array,
-}
 
 #[napi(object)]
 pub struct CryptoBox {

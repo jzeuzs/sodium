@@ -471,6 +471,7 @@ __metadata:
     "@sapphire/prettier-config": ^1.4.1
     "@sapphire/ts-config": ^3.3.3
     "@swc-node/register": ^1.4.2
+    "@types/chloride": ^2.4.0
     "@types/conventional-changelog": ^3
     "@types/eslint": ^8
     "@types/jest": ^27.4.1
@@ -480,6 +481,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": ^5.16.0
     "@typescript-eslint/parser": ^5.16.0
     benny: ^3.7.1
+    chloride: ^2.4.1
     conventional-changelog: ^3.1.25
     cross-env: ^7.0.3
     eslint: ^8.12.0
@@ -1208,6 +1210,15 @@ __metadata:
   dependencies:
     "@babel/types": ^7.3.0
   checksum: a797ea09c72307569e3ee08aa3900ca744ce3091114084f2dc59b67a45ee7d01df7865252790dbfa787a7915ce892cdc820c9b920f3683292765fc656b08dc63
+  languageName: node
+  linkType: hard
+
+"@types/chloride@npm:^2.4.0":
+  version: 2.4.0
+  resolution: "@types/chloride@npm:2.4.0"
+  dependencies:
+    "@types/node": "*"
+  checksum: e7c2af374285a7a7300e4df07f062d91b09ba52cbf1aa81d7e78a08639e9ba689dda41ce01a8e3dbe4f8cfde7e94b1580ebc644c7c6c1d9191413e4aa72849cd
   languageName: node
   linkType: hard
 
@@ -2212,6 +2223,30 @@ __metadata:
   languageName: node
   linkType: hard
 
+"chloride-test@npm:^1.1.0":
+  version: 1.2.4
+  resolution: "chloride-test@npm:1.2.4"
+  dependencies:
+    json-buffer: ^2.0.11
+  checksum: 4cb8ecdb7dc89b7b0a6b57b60a1c3bdf4751904af343e1a9b2a0c455e3a4a6a019ee87e27af2ac5ccdc34458d2329d1c744f5af56228680c151a8d77a4fc64e1
+  languageName: node
+  linkType: hard
+
+"chloride@npm:^2.4.1":
+  version: 2.4.1
+  resolution: "chloride@npm:2.4.1"
+  dependencies:
+    sodium-browserify: ^1.2.7
+    sodium-browserify-tweetnacl: ^0.2.5
+    sodium-chloride: ^1.1.2
+    sodium-native: ^3.0.0
+  dependenciesMeta:
+    sodium-native:
+      optional: true
+  checksum: 0e39b9124e6d32c3d33ee64fd136fda6e477fef431287581b497557ec1ab4f837c5a1d3476eb8bb371f82ed9b6c171d98881ab66510baed252ebb588a41b3a0e
+  languageName: node
+  linkType: hard
+
 "chownr@npm:^2.0.0":
   version: 2.0.0
   resolution: "chownr@npm:2.0.0"
@@ -2831,6 +2866,15 @@ __metadata:
   version: 0.2.0
   resolution: "eastasianwidth@npm:0.2.0"
   checksum: 7d00d7cd8e49b9afa762a813faac332dee781932d6f2c848dc348939c4253f1d4564341b7af1d041853bc3f32c2ef141b58e0a4d9862c17a7f08f68df1e0f1ed
+  languageName: node
+  linkType: hard
+
+"ed2curve@npm:^0.1.4":
+  version: 0.1.4
+  resolution: "ed2curve@npm:0.1.4"
+  dependencies:
+    tweetnacl: 0.x.x
+  checksum: 67677520bff4ebbb147b019210326757251f24dfbc3e57a5cc800ac71ebacdf97e352feb1f185ebd018a0d53152ab9f5f2be2505623c19208e78ea0555029346
   languageName: node
   linkType: hard
 
@@ -3795,7 +3839,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"inherits@npm:2, inherits@npm:^2.0.3, inherits@npm:~2.0.3":
+"inherits@npm:2, inherits@npm:^2.0.1, inherits@npm:^2.0.3, inherits@npm:~2.0.3":
   version: 2.0.4
   resolution: "inherits@npm:2.0.4"
   checksum: 4a48a733847879d6cf6691860a6b1e3f0f4754176e4d71494c41f3475553768b10f84b5ce1d40fbd0e34e6bfbb864ee35858ad4dd2cf31e02fc4a154b724d7f1
@@ -4577,6 +4621,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"json-buffer@npm:^2.0.11":
+  version: 2.0.11
+  resolution: "json-buffer@npm:2.0.11"
+  checksum: 0183618c645a50ef30e44f766db9da69d8074202977367da6fc7cb6dd04d48c844e2624a995d6c3c0c7bf2b1cfe3447fa7736d411701cd8a060bb956a290047d
+  languageName: node
+  linkType: hard
+
 "json-parse-better-errors@npm:^1.0.1":
   version: 1.0.2
   resolution: "json-parse-better-errors@npm:1.0.2"
@@ -4709,7 +4760,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"libsodium-wrappers@npm:^0.7.10":
+"libsodium-wrappers@npm:^0.7.10, libsodium-wrappers@npm:^0.7.4":
   version: 0.7.10
   resolution: "libsodium-wrappers@npm:0.7.10"
   dependencies:
@@ -5191,6 +5242,17 @@ __metadata:
   version: 2.6.2
   resolution: "neo-async@npm:2.6.2"
   checksum: deac9f8d00eda7b2e5cd1b2549e26e10a0faa70adaa6fdadca701cc55f49ee9018e427f424bac0c790b7c7e2d3068db97f3093f1093975f2acb8f8818b936ed9
+  languageName: node
+  linkType: hard
+
+"node-gyp-build@npm:^4.3.0":
+  version: 4.3.0
+  resolution: "node-gyp-build@npm:4.3.0"
+  bin:
+    node-gyp-build: bin.js
+    node-gyp-build-optional: optional.js
+    node-gyp-build-test: build-test.js
+  checksum: 1ecab16d9f275174d516e223f60f65ebe07540347d5c04a6a7d6921060b7f2e3af4f19463d9d1dcedc452e275c2ae71354a99405e55ebd5b655bb2f38025c728
   languageName: node
   linkType: hard
 
@@ -5904,17 +5966,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"safe-buffer@npm:^5.0.1, safe-buffer@npm:~5.2.0":
+  version: 5.2.1
+  resolution: "safe-buffer@npm:5.2.1"
+  checksum: b99c4b41fdd67a6aaf280fcd05e9ffb0813654894223afb78a31f14a19ad220bba8aba1cb14eddce1fcfb037155fe6de4e861784eb434f7d11ed58d1e70dd491
+  languageName: node
+  linkType: hard
+
 "safe-buffer@npm:~5.1.0, safe-buffer@npm:~5.1.1":
   version: 5.1.2
   resolution: "safe-buffer@npm:5.1.2"
   checksum: f2f1f7943ca44a594893a852894055cf619c1fbcb611237fc39e461ae751187e7baf4dc391a72125e0ac4fb2d8c5c0b3c71529622e6a58f46b960211e704903c
-  languageName: node
-  linkType: hard
-
-"safe-buffer@npm:~5.2.0":
-  version: 5.2.1
-  resolution: "safe-buffer@npm:5.2.1"
-  checksum: b99c4b41fdd67a6aaf280fcd05e9ffb0813654894223afb78a31f14a19ad220bba8aba1cb14eddce1fcfb037155fe6de4e861784eb434f7d11ed58d1e70dd491
   languageName: node
   linkType: hard
 
@@ -5974,6 +6036,29 @@ __metadata:
   version: 2.0.0
   resolution: "set-blocking@npm:2.0.0"
   checksum: 6e65a05f7cf7ebdf8b7c75b101e18c0b7e3dff4940d480efed8aad3a36a4005140b660fa1d804cb8bce911cac290441dc728084a30504d3516ac2ff7ad607b02
+  languageName: node
+  linkType: hard
+
+"sha.js@npm:2.4.5":
+  version: 2.4.5
+  resolution: "sha.js@npm:2.4.5"
+  dependencies:
+    inherits: ^2.0.1
+  bin:
+    sha.js: ./bin.js
+  checksum: fc3ab313f579e472fa56dc610ff8f72f4948e6acbd28c17972bbb615f253b3006474809b64a5cd93135553b5287258e1ca1bedd77a8bec41f2062cb115a0f96d
+  languageName: node
+  linkType: hard
+
+"sha.js@npm:^2.4.8":
+  version: 2.4.11
+  resolution: "sha.js@npm:2.4.11"
+  dependencies:
+    inherits: ^2.0.1
+    safe-buffer: ^5.0.1
+  bin:
+    sha.js: ./bin.js
+  checksum: ebd3f59d4b799000699097dadb831c8e3da3eb579144fd7eb7a19484cbcbb7aca3c68ba2bb362242eb09e33217de3b4ea56e4678184c334323eca24a58e3ad07
   languageName: node
   linkType: hard
 
@@ -6082,6 +6167,48 @@ __metadata:
     ip: ^1.1.5
     smart-buffer: ^4.2.0
   checksum: dd9194293059d737759d5c69273850ad4149f448426249325c4bea0e340d1cf3d266c3b022694b0dcf5d31f759de23657244c481fc1e8322add80b7985c36b5e
+  languageName: node
+  linkType: hard
+
+"sodium-browserify-tweetnacl@npm:^0.2.5":
+  version: 0.2.6
+  resolution: "sodium-browserify-tweetnacl@npm:0.2.6"
+  dependencies:
+    chloride-test: ^1.1.0
+    ed2curve: ^0.1.4
+    sha.js: ^2.4.8
+    tweetnacl: ^1.0.1
+    tweetnacl-auth: ^0.3.0
+  checksum: c4dd558dca7aa5b5ed098e259985fc6b12e26ff2c1a5c98da68f6ce80c5184af244c4be6916988ed256c45bdcd33b25cf0f3725f2eb6da20fc152496d6ba52f3
+  languageName: node
+  linkType: hard
+
+"sodium-browserify@npm:^1.2.7":
+  version: 1.3.0
+  resolution: "sodium-browserify@npm:1.3.0"
+  dependencies:
+    libsodium-wrappers: ^0.7.4
+    sha.js: 2.4.5
+    sodium-browserify-tweetnacl: ^0.2.5
+    tweetnacl: ^0.14.1
+  checksum: f1ef5110fb7aa46677c012663e5cf763108b8150100cde28c02c3645e608837ceb892bab0aaa4fcefc8d25cfb4b2d616d2867fcf15658fccf48a7fbf8beaf4b9
+  languageName: node
+  linkType: hard
+
+"sodium-chloride@npm:^1.1.2":
+  version: 1.1.2
+  resolution: "sodium-chloride@npm:1.1.2"
+  checksum: e88593e3eac70a85599d9e0ad3dc7d4afeb52170e4bcf20b271eb7ba132e640a647fc044f6de632bcc0ae9f0bef901bd88ec6fdbc16121c6819e8a39c6d7835d
+  languageName: node
+  linkType: hard
+
+"sodium-native@npm:^3.0.0":
+  version: 3.3.0
+  resolution: "sodium-native@npm:3.3.0"
+  dependencies:
+    node-gyp: latest
+    node-gyp-build: ^4.3.0
+  checksum: 4412bc90155261e2006c979788d3b33e3bdba1c41669c7054a876b8731a68886e1450b356791abd2c4e7b217d21f50adfdc1e194d8909dd003223195bd8ddc0a
   languageName: node
   linkType: hard
 
@@ -6591,7 +6718,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tweetnacl@npm:^1.0.3":
+"tweetnacl-auth@npm:^0.3.0":
+  version: 0.3.1
+  resolution: "tweetnacl-auth@npm:0.3.1"
+  dependencies:
+    tweetnacl: 0.x.x
+  checksum: 12131da1d125369eae426bc83a3cf9833908fe9c5b6c3650e5a5b765d361153d0d22686b42c2cf16bddee431182e2dfb5fd8b9c1550b054f205c92d1ff727e92
+  languageName: node
+  linkType: hard
+
+"tweetnacl@npm:0.x.x, tweetnacl@npm:^0.14.1":
+  version: 0.14.5
+  resolution: "tweetnacl@npm:0.14.5"
+  checksum: 6061daba1724f59473d99a7bb82e13f211cdf6e31315510ae9656fefd4779851cb927adad90f3b488c8ed77c106adc0421ea8055f6f976ff21b27c5c4e918487
+  languageName: node
+  linkType: hard
+
+"tweetnacl@npm:^1.0.1, tweetnacl@npm:^1.0.3":
   version: 1.0.3
   resolution: "tweetnacl@npm:1.0.3"
   checksum: e4a57cac188f0c53f24c7a33279e223618a2bfb5fea426231991652a13247bea06b081fd745d71291fcae0f4428d29beba1b984b1f1ce6f66b06a6d1ab90645c
