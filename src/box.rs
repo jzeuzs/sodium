@@ -1,4 +1,4 @@
-use crate::{vec_arr_func, KeyPair};
+use crate::{vec_arr_func, types::KeyPair};
 use dryoc::classic::crypto_box::{
     crypto_box_seal as box_seal, crypto_box_seal_open as box_seal_open,
 };

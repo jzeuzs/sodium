@@ -1,9 +1,8 @@
-use crate::{vec_arr_func, KeyPair};
+use crate::{vec_arr_func, types::KeyPair};
 use dryoc::constants::*;
 use libc::c_ulonglong;
-use libsodium_sys as ffi;
 use napi::bindgen_prelude::*;
-use sodiumoxide::{crypto::sign, init};
+use sodiumoxide::{crypto::sign, init, ffi};
 use std::mem::MaybeUninit;
 
 vec_arr_func!(to_state, u64, 8);
