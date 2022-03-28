@@ -1,11 +1,7 @@
 import { Box } from '../bindings';
+import type { KeyPair } from '../types';
 
 const box = new Box();
-
-export interface KeyPair {
-	public_key: Uint8Array;
-	secret_key: Uint8Array;
-}
 
 export interface CryptoBox {
 	ciphertext: Uint8Array;
