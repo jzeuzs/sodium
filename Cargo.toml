@@ -9,10 +9,12 @@ edition = "2021"
 crate-type = ["cdylib"]
 
 [dependencies]
-napi = "2.2.0"
+napi = { version = "2.2.0", features = ["napi6"] }
 napi-derive = "2.2.0"
-sodiumoxide = { git = "https://github.com/devtomio/sodiumoxide", rev = "8f5ce6b" }
+sodiumoxide = { path = "./sodiumoxide" }
+libsodium-sys = { path = "./sodiumoxide/libsodium-sys" }
 dryoc = { git = "https://github.com/brndnmtthws/dryoc" }
+libc = "0.2.121"
 
 [build-dependencies]
 napi-build = "1.2.1"
