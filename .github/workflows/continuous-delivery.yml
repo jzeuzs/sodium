@@ -87,12 +87,6 @@ jobs:
             build: |
               CC=arm-linux-gnueabihf-gcc yarn rs:build --target armv7-unknown-linux-gnueabihf
               arm-linux-gnueabihf-strip *.node
-          - host: windows-latest
-            build: |
-              yarn rs:build --target i686-pc-windows-msvc
-              yarn test
-            target: 'i686-pc-windows-msvc'
-            architecture: x86
     name: Nightly - ${{ matrix.settings.target }} - node@16
     runs-on: ${{ matrix.settings.host }}
     steps:
