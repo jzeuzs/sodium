@@ -1,0 +1,31 @@
+{
+	"name": "@devtomio/sodium-linux-arm-gnueabihf",
+	"version": "0.3.0",
+	"os": [
+		"linux"
+	],
+	"cpu": [
+		"arm"
+	],
+	"main": "sodium.linux-arm-gnueabihf.node",
+	"files": [
+		"sodium.linux-arm-gnueabihf.node"
+	],
+	"description": "Libsodium for Node.js",
+	"keywords": [
+		"sodium",
+		"libsodium",
+		"typescript",
+		"ts",
+		"yarn",
+		"napi",
+		"napi-rs",
+		"rust",
+		"bindings"
+	],
+	"license": "MIT",
+	"publishConfig": {
+		"access": "public"
+	},
+	"repository": "https://github.com/devtomio/sodium.git"
+}

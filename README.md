@@ -20,6 +20,7 @@
 [![npm](https://img.shields.io/npm/v/@devtomio/sodium-linux-x64-gnu?color=crimson&logo=npm&style=flat-square&label=@devtomio/sodium-linux-x64-gnu)](https://www.npmjs.com/package/@devtomio/sodium-linux-x64-gnu)
 [![npm](https://img.shields.io/npm/v/@devtomio/sodium-linux-x64-musl?color=crimson&logo=npm&style=flat-square&label=@devtomio/sodium-linux-x64-musl)](https://www.npmjs.com/package/@devtomio/sodium-linux-x64-musl)
 [![npm](https://img.shields.io/npm/v/@devtomio/sodium-win32-x64-msvc?color=crimson&logo=npm&style=flat-square&label=@devtomio/sodium-win32-x64-msvc)](https://www.npmjs.com/package/@devtomio/sodium-win32-x64-msvc)
+[![npm](https://img.shields.io/npm/v/@devtomio/sodium-linux-arm-gnueabihf?color=crimson&logo=npm&style=flat-square&label=@devtomio/sodium-linux-arm-gnueabihf)](https://www.npmjs.com/package/@devtomio/sodium-linux-arm-gnueabihf)
 
 </div>
 
