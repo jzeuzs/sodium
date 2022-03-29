@@ -1,8 +1,8 @@
-use crate::{vec_arr_func, types::KeyPair};
+use crate::{types::KeyPair, vec_arr_func};
 use dryoc::constants::*;
 use libc::c_ulonglong;
 use napi::bindgen_prelude::*;
-use sodiumoxide::{crypto::sign, init, ffi};
+use sodiumoxide::{crypto::sign, ffi, init};
 use std::mem::MaybeUninit;
 
 vec_arr_func!(to_state, u64, 8);
@@ -183,28 +183,28 @@ impl Sign {
         )
     }
 
-	#[napi(getter)]
-	pub fn crypto_sign_bytes(&self) -> u32 {
-		CRYPTO_SIGN_BYTES as u32
-	}
+    #[napi(getter)]
+    pub fn crypto_sign_bytes(&self) -> u32 {
+        CRYPTO_SIGN_BYTES as u32
+    }
 
-	#[napi(getter)]
-	pub fn crypto_sign_messagebytes_max(&self) -> u32 {
-		CRYPTO_SIGN_MESSAGEBYTES_MAX as u32
-	}
+    #[napi(getter)]
+    pub fn crypto_sign_messagebytes_max(&self) -> u32 {
+        CRYPTO_SIGN_MESSAGEBYTES_MAX as u32
+    }
 
-	#[napi(getter)]
-	pub fn crypto_sign_publickeybytes(&self) -> u32 {
-		CRYPTO_SIGN_PUBLICKEYBYTES as u32
-	}
+    #[napi(getter)]
+    pub fn crypto_sign_publickeybytes(&self) -> u32 {
+        CRYPTO_SIGN_PUBLICKEYBYTES as u32
+    }
 
-	#[napi(getter)]
-	pub fn crypto_sign_secretkeybytes(&self) -> u32 {
-		CRYPTO_SIGN_SECRETKEYBYTES as u32
-	}
+    #[napi(getter)]
+    pub fn crypto_sign_secretkeybytes(&self) -> u32 {
+        CRYPTO_SIGN_SECRETKEYBYTES as u32
+    }
 
-	#[napi(getter)]
-	pub fn crypto_sign_seedbytes(&self) -> u32 {
-		CRYPTO_SIGN_SEEDBYTES as u32
-	}
+    #[napi(getter)]
+    pub fn crypto_sign_seedbytes(&self) -> u32 {
+        CRYPTO_SIGN_SEEDBYTES as u32
+    }
 }
