@@ -492,7 +492,7 @@ __metadata:
     jest-circus: ^27.5.1
     libsodium-wrappers: ^0.7.10
     lint-staged: ^12.3.7
-    prettier: ^2.6.1
+    prettier: ^2.6.2
     semver-regex: ^4.0.2
     ts-jest: ^27.1.4
     ts-node: ^10.7.0
@@ -5495,6 +5495,15 @@ __metadata:
   bin:
     prettier: bin-prettier.js
   checksum: 78be1f8a3ddfad7c3d8a854b6c8941a3bb1ddfca4225c38d778e0fe1029a55368f71b3bbefff82c689015fbb4d391ec44add957f01308ad2725e01a7c1f37cb6
+  languageName: node
+  linkType: hard
+
+"prettier@npm:^2.6.2":
+  version: 2.6.2
+  resolution: "prettier@npm:2.6.2"
+  bin:
+    prettier: bin-prettier.js
+  checksum: 48d08dde8e9fb1f5bccdd205baa7f192e9fc8bc98f86e1b97d919de804e28c806b0e6cc685e4a88211aa7987fa9668f30baae19580d87ced3ed0f2ec6572106f
   languageName: node
   linkType: hard
 
