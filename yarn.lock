@@ -465,7 +465,7 @@ __metadata:
   resolution: "@devtomio/sodium@workspace:."
   dependencies:
     "@jsdevtools/npm-publish": ^1.4.3
-    "@napi-rs/cli": ^2.5.0
+    "@napi-rs/cli": ^2.6.2
     "@node-rs/helper": ^1.3.3
     "@sapphire/eslint-config": ^4.3.3
     "@sapphire/prettier-config": ^1.4.2
@@ -832,12 +832,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@napi-rs/cli@npm:^2.5.0":
-  version: 2.5.0
-  resolution: "@napi-rs/cli@npm:2.5.0"
+"@napi-rs/cli@npm:^2.6.2":
+  version: 2.6.2
+  resolution: "@napi-rs/cli@npm:2.6.2"
   bin:
     napi: scripts/index.js
-  checksum: d8ebb57d57e71f384fb76e570f62fab5a87feaf642b7c8f1590135497dad275a3e817d8170cc575dc20ef0811d7cd0681c1e65f10e4d87e69b6b5bb7216c86da
+  checksum: 3cc260aabbdb19f6354f7b24e423ce75f981b9ab4db9d7f0c5110791c72872fc24e8a16b5ac33bf3e9511a9e992dce46becd813155164d07fbe53601d27d775d
   languageName: node
   linkType: hard
 
