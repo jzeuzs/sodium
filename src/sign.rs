@@ -10,15 +10,15 @@ vec_arr_func!(to_count, u64, 2);
 vec_arr_func!(to_buf, u8, 128);
 
 #[napi(object)]
-pub struct Hash {
+pub struct SignHash {
     pub state: BigUint64Array,
     pub count: BigUint64Array,
     pub buf: Uint8Array,
 }
 
 #[napi(object)]
-pub struct State {
-    pub hs: Hash,
+pub struct SignState {
+    pub hs: SignHash,
 }
 
 #[napi]
@@ -63,7 +63,7 @@ impl Sign {
     }
 
     #[napi(js_name = "crypto_sign_final_create")]
-    pub fn crypto_sign_final_create(&mut self, state: State, sk: Uint8Array) -> Uint8Array {
+    pub fn crypto_sign_final_create(&mut self, state: SignState, sk: Uint8Array) -> Uint8Array {
         let mut sig = [0u8; CRYPTO_SIGN_BYTES];
         let mut siglen: c_ulonglong = 0;
         let mut st = ffi::crypto_sign_state {
@@ -84,7 +84,7 @@ impl Sign {
     #[napi(js_name = "crypto_sign_final_verify")]
     pub fn crypto_sign_final_verify(
         &mut self,
-        state: State,
+        state: SignState,
         mut sig: Uint8Array,
         pk: Uint8Array,
     ) -> bool {
@@ -102,15 +102,15 @@ impl Sign {
     }
 
     #[napi(js_name = "crypto_sign_init")]
-    pub fn crypto_sign_init(&mut self) -> State {
+    pub fn crypto_sign_init(&mut self) -> SignState {
         let mut s = MaybeUninit::uninit();
         let state = unsafe {
             ffi::crypto_sign_init(s.as_mut_ptr());
             s.assume_init()
         };
 
-        State {
-            hs: Hash {
+        SignState {
+            hs: SignHash {
                 state: BigUint64Array::new(state.hs.state.to_vec()),
                 count: BigUint64Array::new(state.hs.count.to_vec()),
                 buf: Uint8Array::new(state.hs.buf.to_vec()),
@@ -147,7 +147,7 @@ impl Sign {
     }
 
     #[napi(js_name = "crypto_sign_update")]
-    pub fn crypto_sign_update(&self, state: State, m: Uint8Array) -> State {
+    pub fn crypto_sign_update(&self, state: SignState, m: Uint8Array) -> SignState {
         let mut st = ffi::crypto_sign_state {
             hs: ffi::crypto_hash_sha512_state {
                 state: to_state(&state.hs.state),
@@ -160,8 +160,8 @@ impl Sign {
             ffi::crypto_sign_update(&mut st, m.as_ptr(), m.len() as c_ulonglong);
         }
 
-        State {
-            hs: Hash {
+        SignState {
+            hs: SignHash {
                 state: BigUint64Array::new(st.hs.state.to_vec()),
                 count: BigUint64Array::new(st.hs.count.to_vec()),
                 buf: Uint8Array::new(st.hs.buf.to_vec()),
