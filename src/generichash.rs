@@ -7,7 +7,7 @@ use sodiumoxide::{crypto::generichash, ffi, init};
 vec_arr_func!(to_opaque, u8, 384);
 
 #[napi(object)]
-pub struct HashState {
+pub struct GenericHashState {
     pub opaque: Uint8Array,
 }
 
@@ -45,7 +45,7 @@ impl GenericHash {
     }
 
     #[napi(js_name = "crypto_generichash_final")]
-    pub fn crypto_generichash_final(&self, state: HashState, out_len: u32) -> Result<Uint8Array> {
+    pub fn crypto_generichash_final(&self, state: GenericHashState, out_len: u32) -> Result<Uint8Array> {
         let mut result = generichash::Digest::new(out_len as usize);
         let mut st = ffi::crypto_generichash_state {
             opaque: to_opaque(&state.opaque),
@@ -67,7 +67,7 @@ impl GenericHash {
         &self,
         out_len: Option<u32>,
         key: Option<Uint8Array>,
-    ) -> HashState {
+    ) -> GenericHashState {
         let ol = match out_len {
             Some(l) => Some(l as usize),
             None => None,
@@ -80,7 +80,7 @@ impl GenericHash {
 
         let s = generichash::State::new(ol, k).unwrap();
 
-        HashState {
+        GenericHashState {
             opaque: Uint8Array::new(s.state.opaque.to_vec()),
         }
     }
@@ -99,9 +99,9 @@ impl GenericHash {
     #[napi(js_name = "crypto_generichash_update")]
     pub fn crypto_generichash_update(
         &self,
-        state: HashState,
+        state: GenericHashState,
         data: Uint8Array,
-    ) -> Result<HashState> {
+    ) -> Result<GenericHashState> {
         let mut st = ffi::crypto_generichash_state {
             opaque: to_opaque(&state.opaque),
         };
@@ -111,7 +111,7 @@ impl GenericHash {
         };
 
         match rc {
-            0 => Ok(HashState {
+            0 => Ok(GenericHashState {
                 opaque: Uint8Array::new(st.opaque.to_vec()),
             }),
             _ => Err(Error::new(
@@ -119,5 +119,35 @@ impl GenericHash {
                 "Failed to execute".to_string(),
             )),
         }
+    }
+
+    #[napi(getter)]
+    pub fn crypto_generichash_bytes(&self) -> u32 {
+        CRYPTO_GENERICHASH_BYTES as u32
+    }
+
+    #[napi(getter)]
+    pub fn crypto_generichash_bytes_max(&self) -> u32 {
+        CRYPTO_GENERICHASH_BYTES_MAX as u32
+    }
+
+    #[napi(getter)]
+    pub fn crypto_generichash_bytes_min(&self) -> u32 {
+        CRYPTO_GENERICHASH_BYTES_MIN as u32
+    }
+
+    #[napi(getter)]
+    pub fn crypto_generichash_keybytes(&self) -> u32 {
+        CRYPTO_GENERICHASH_KEYBYTES as u32
+    }
+
+    #[napi(getter)]
+    pub fn crypto_generichash_keybytes_max(&self) -> u32 {
+        CRYPTO_GENERICHASH_KEYBYTES_MAX as u32
+    }
+
+    #[napi(getter)]
+    pub fn crypto_generichash_keybytes_min(&self) -> u32 {
+        CRYPTO_GENERICHASH_KEYBYTES_MIN as u32
     }
 }
