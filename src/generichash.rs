@@ -1,3 +1,5 @@
+#![allow(clippy::new_without_default)]
+
 use crate::vec_arr_func;
 use dryoc::constants::*;
 use libc::c_ulonglong;
@@ -29,15 +31,8 @@ impl GenericHash {
         out_len: Option<u32>,
         key: Option<Uint8Array>,
     ) -> Uint8Array {
-        let ol = match out_len {
-            Some(l) => Some(l as usize),
-            None => None,
-        };
-
-        let k = match key {
-            Some(ky) => Some(ky.to_vec()),
-            None => None,
-        };
+        let ol = out_len.map(|l| l as usize);
+        let k = key.map(|ky| ky.to_vec());
 
         let d = generichash::hash(&data, ol, k).unwrap();
 
@@ -45,7 +40,11 @@ impl GenericHash {
     }
 
     #[napi(js_name = "crypto_generichash_final")]
-    pub fn crypto_generichash_final(&self, state: GenericHashState, out_len: u32) -> Result<Uint8Array> {
+    pub fn crypto_generichash_final(
+        &self,
+        state: GenericHashState,
+        out_len: u32,
+    ) -> Result<Uint8Array> {
         let mut result = generichash::Digest::new(out_len as usize);
         let mut st = ffi::crypto_generichash_state {
             opaque: to_opaque(&state.opaque),
@@ -68,15 +67,8 @@ impl GenericHash {
         out_len: Option<u32>,
         key: Option<Uint8Array>,
     ) -> GenericHashState {
-        let ol = match out_len {
-            Some(l) => Some(l as usize),
-            None => None,
-        };
-
-        let k = match key {
-            Some(ky) => Some(ky.to_vec()),
-            None => None,
-        };
+        let ol = out_len.map(|l| l as usize);
+        let k = key.map(|ky| ky.to_vec());
 
         let s = generichash::State::new(ol, k).unwrap();
 

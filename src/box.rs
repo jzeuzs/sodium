@@ -1,3 +1,5 @@
+#![allow(clippy::new_without_default)]
+
 use crate::{types::KeyPair, vec_arr_func};
 use dryoc::classic::crypto_box::{
     crypto_box_seal as box_seal, crypto_box_seal_open as box_seal_open,
@@ -46,9 +48,9 @@ impl SodiumBox {
         pk: Uint8Array,
         sk: Uint8Array,
     ) -> CryptoBox {
-        let mut ms = m.deref_mut();
+        let ms = m.deref_mut();
         let mac = box_::seal_detached(
-            &mut ms,
+            ms,
             &box_::Nonce::from_slice(&n).unwrap(),
             &box_::PublicKey::from_slice(&pk).unwrap(),
             &box_::SecretKey::from_slice(&sk).unwrap(),
@@ -104,10 +106,10 @@ impl SodiumBox {
         pk: Uint8Array,
         sk: Uint8Array,
     ) -> Uint8Array {
-        let mut ct = c.deref_mut();
+        let ct = c.deref_mut();
 
         box_::open_detached(
-            &mut ct,
+            ct,
             &box_::Tag::from_slice(&mac).unwrap(),
             &box_::Nonce::from_slice(&n).unwrap(),
             &box_::PublicKey::from_slice(&pk).unwrap(),
@@ -126,10 +128,10 @@ impl SodiumBox {
         n: Uint8Array,
         k: Uint8Array,
     ) -> Uint8Array {
-        let mut ct = c.deref_mut();
+        let ct = c.deref_mut();
 
         box_::open_detached_precomputed(
-            &mut ct,
+            ct,
             &box_::Tag::from_slice(&mac).unwrap(),
             &box_::Nonce::from_slice(&n).unwrap(),
             &box_::PrecomputedKey::from_slice(&k).unwrap(),

@@ -1,3 +1,5 @@
+#![allow(clippy::new_without_default)]
+
 use dryoc::constants::*;
 use napi::bindgen_prelude::*;
 use sodiumoxide::{crypto::secretbox, init};
@@ -28,9 +30,9 @@ impl SecretBox {
         n: Uint8Array,
         k: Uint8Array,
     ) -> Secret_Box {
-        let mut ms = m.deref_mut();
+        let ms = m.deref_mut();
         let mac = secretbox::seal_detached(
-            &mut ms,
+            ms,
             &secretbox::Nonce::from_slice(&n).unwrap(),
             &secretbox::Key::from_slice(&k).unwrap(),
         );
@@ -74,10 +76,10 @@ impl SecretBox {
         n: Uint8Array,
         k: Uint8Array,
     ) -> Uint8Array {
-        let mut ct = c.deref_mut();
+        let ct = c.deref_mut();
 
         secretbox::open_detached(
-            &mut ct,
+            ct,
             &secretbox::Tag::from_slice(&mac).unwrap(),
             &secretbox::Nonce::from_slice(&n).unwrap(),
             &secretbox::Key::from_slice(&k).unwrap(),

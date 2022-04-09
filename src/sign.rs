@@ -1,3 +1,5 @@
+#![allow(clippy::new_without_default)]
+
 use crate::{types::KeyPair, vec_arr_func};
 use dryoc::constants::*;
 use libc::c_ulonglong;
