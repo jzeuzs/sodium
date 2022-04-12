@@ -18,9 +18,9 @@ pub mod constants {
         CRYPTO_AEAD_CHACHA20POLY1305_IETF_MESSAGEBYTES_MAX,
         u64
     );
-	create_constant!(crypto_aead_chacha20poly1305_ietf_NPUBBYTES, u32);
-	create_constant!(crypto_aead_chacha20poly1305_IETF_NPUBBYTES, u32);
-	create_constant!(crypto_aead_chacha20poly1305_ietf_NSECBYTES, u32);
-	create_constant!(crypto_aead_chacha20poly1305_IETF_NSECBYTES, u32);
-	create_constant!(crypto_aead_chacha20poly1305_KEYBYTES, u32);
+    create_constant!(crypto_aead_chacha20poly1305_ietf_NPUBBYTES, u32);
+    create_constant!(crypto_aead_chacha20poly1305_IETF_NPUBBYTES, u32);
+    create_constant!(crypto_aead_chacha20poly1305_ietf_NSECBYTES, u32);
+    create_constant!(crypto_aead_chacha20poly1305_IETF_NSECBYTES, u32);
+    create_constant!(crypto_aead_chacha20poly1305_KEYBYTES, u32);
 }
