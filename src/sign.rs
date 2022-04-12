@@ -1,11 +1,15 @@
 #![allow(clippy::new_without_default)]
 
-use crate::{types::KeyPair, vec_arr_func};
+use std::mem::MaybeUninit;
+
 use dryoc::constants::*;
 use libc::c_ulonglong;
 use napi::bindgen_prelude::*;
-use sodiumoxide::{crypto::sign, ffi, init};
-use std::mem::MaybeUninit;
+use sodiumoxide::crypto::sign;
+use sodiumoxide::{ffi, init};
+
+use crate::types::KeyPair;
+use crate::vec_arr_func;
 
 vec_arr_func!(to_state, u64, 8);
 vec_arr_func!(to_count, u64, 2);

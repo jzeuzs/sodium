@@ -1,10 +1,12 @@
 #![allow(clippy::new_without_default)]
 
-use crate::vec_arr_func;
 use dryoc::constants::*;
 use libc::c_ulonglong;
 use napi::bindgen_prelude::*;
-use sodiumoxide::{crypto::generichash, ffi, init};
+use sodiumoxide::crypto::generichash;
+use sodiumoxide::{ffi, init};
+
+use crate::vec_arr_func;
 
 vec_arr_func!(to_opaque, u8, 384);
 
@@ -49,15 +51,13 @@ impl GenericHash {
         let mut st = ffi::crypto_generichash_state {
             opaque: to_opaque(&state.opaque),
         };
+
         let rc =
             unsafe { ffi::crypto_generichash_final(&mut st, result.data.as_mut_ptr(), result.len) };
 
         match rc {
             0 => Ok(Uint8Array::new(result.data.to_vec())),
-            _ => Err(Error::new(
-                Status::GenericFailure,
-                "Failed to execute".to_string(),
-            )),
+            _ => Err(Error::new(Status::GenericFailure, "Failed to execute".to_string())),
         }
     }
 
@@ -106,10 +106,7 @@ impl GenericHash {
             0 => Ok(GenericHashState {
                 opaque: Uint8Array::new(st.opaque.to_vec()),
             }),
-            _ => Err(Error::new(
-                Status::GenericFailure,
-                "Failed to execute".to_string(),
-            )),
+            _ => Err(Error::new(Status::GenericFailure, "Failed to execute".to_string())),
         }
     }
 

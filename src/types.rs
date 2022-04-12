@@ -7,3 +7,9 @@ pub struct KeyPair {
     #[napi(js_name = "secret_key")]
     pub secret_key: Uint8Array,
 }
+
+#[napi(object)]
+pub struct CryptoBox {
+    pub ciphertext: Uint8Array,
+    pub mac: Uint8Array,
+}

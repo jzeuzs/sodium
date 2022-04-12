@@ -1,23 +1,22 @@
 #![allow(clippy::new_without_default)]
 
-use crate::{types::KeyPair, vec_arr_func};
+use std::ops::{Deref, DerefMut};
+
 use dryoc::classic::crypto_box::{
-    crypto_box_seal as box_seal, crypto_box_seal_open as box_seal_open,
+    crypto_box_seal as box_seal,
+    crypto_box_seal_open as box_seal_open,
 };
 use dryoc::constants::*;
 use dryoc::types::*;
 use napi::bindgen_prelude::*;
-use sodiumoxide::{crypto::box_, init};
-use std::ops::{Deref, DerefMut};
+use sodiumoxide::crypto::box_;
+use sodiumoxide::init;
+
+use crate::types::{CryptoBox, KeyPair};
+use crate::vec_arr_func;
 
 vec_arr_func!(to_public_key, u8, CRYPTO_BOX_PUBLICKEYBYTES);
 vec_arr_func!(to_secret_key, u8, CRYPTO_BOX_SECRETKEYBYTES);
-
-#[napi(object)]
-pub struct CryptoBox {
-    pub ciphertext: Uint8Array,
-    pub mac: Uint8Array,
-}
 
 #[napi(js_name = "Box")]
 pub struct SodiumBox {}

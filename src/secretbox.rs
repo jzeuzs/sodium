@@ -1,9 +1,11 @@
 #![allow(clippy::new_without_default)]
 
+use std::ops::DerefMut;
+
 use dryoc::constants::*;
 use napi::bindgen_prelude::*;
-use sodiumoxide::{crypto::secretbox, init};
-use std::ops::DerefMut;
+use sodiumoxide::crypto::secretbox;
+use sodiumoxide::init;
 
 #[napi(object, js_name = "Secret_Box")]
 #[allow(non_camel_case_types)]
