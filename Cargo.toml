@@ -16,7 +16,7 @@ dryoc = { git = "https://github.com/brndnmtthws/dryoc" }
 libc = "0.2.125"
 
 [build-dependencies]
-napi-build = "1.2.1"
+napi-build = "2.0.0"
 
 [profile.release]
 lto = true
