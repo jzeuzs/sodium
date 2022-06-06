@@ -13,7 +13,7 @@ napi = { version = "2.4.3", features = ["napi6"] }
 napi-derive = "2.4.1"
 sodiumoxide = { git = "https://github.com/devtomio/sodiumoxide" }
 dryoc = { git = "https://github.com/brndnmtthws/dryoc" }
-libc = "0.2.125"
+libc = "0.2.126"
 
 [build-dependencies]
 napi-build = "2.0.0"
