@@ -14,8 +14,24 @@ on:
   pull_request: null
 
 jobs:
+  release_please:
+    name: Release Please
+    runs-on: ubuntu-latest
+    permissions: write-all
+    if: github.repository == 'devtomio/sodium'
+
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
+      tag_name: ${{ steps.release.outputs.tag_name }}
+
+    steps:
+      - uses: google-github-actions/release-please-action@0dbbfb021aab097f9e5c86c7387d0cc10d3edab7 # tag=v3
+        id: release
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          release-type: rust
+
   build:
-    if: "!contains(github.event.head_commit.message, 'skip ci')"
     strategy:
       fail-fast: false
       matrix:
@@ -26,10 +42,12 @@ jobs:
             build: |
               yarn rs:build
               strip -x *.node
+
           - host: windows-latest
             build: yarn rs:build
             target: x86_64-pc-windows-msvc
             architecture: x64
+
           - host: ubuntu-latest
             target: x86_64-unknown-linux-gnu
             architecture: x64
@@ -38,6 +56,7 @@ jobs:
               docker tag $DOCKER_REGISTRY_URL/napi-rs/napi-rs/nodejs-rust:lts-debian builder
             build: |
               docker run --rm -v ~/.cargo/git:/root/.cargo/git -v ~/.cargo/registry:/root/.cargo/registry -v $(pwd):/build -w /build builder sh -c "apt-get install -y libsodium-dev pkg-config && CC=gcc yarn rs:build --target x86_64-unknown-linux-gnu && strip *.node"
+
           - host: ubuntu-latest
             target: x86_64-unknown-linux-musl
             architecture: x64
@@ -45,11 +64,13 @@ jobs:
               docker pull ghcr.io/brooooooklyn/canvas/musl-builder:lts
               docker tag ghcr.io/brooooooklyn/canvas/musl-builder:lts builder
             build: docker run --rm -v ~/.cargo/git:/root/.cargo/git -v ~/.cargo/registry:/root/.cargo/registry -v $(pwd):/build -w /build builder sh -c "apk add gcc g++ make libffi-dev openssl-dev autoconf automake libtool pkgconfig && CC=gcc yarn rs:build && strip *.node"
+
           - host: macos-latest
             target: aarch64-apple-darwin
             build: |
               yarn rs:build --target=aarch64-apple-darwin
               strip -x *.node
+
           - host: ubuntu-latest
             architecture: x64
             target: aarch64-unknown-linux-gnu
@@ -59,6 +80,7 @@ jobs:
             build: |
               yarn rs:build --target=aarch64-unknown-linux-gnu
               aarch64-linux-gnu-strip *.node
+
           - host: ubuntu-latest
             architecture: x64
             target: aarch64-linux-android
@@ -69,6 +91,7 @@ jobs:
               export PATH="${ANDROID_NDK_HOME}/toolchains/llvm/prebuilt/linux-x86_64/bin:${PATH}"
               yarn rs:build --target aarch64-linux-android
               ${ANDROID_NDK_HOME}/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android-strip *.node
+
           - host: ubuntu-latest
             architecture: x64
             target: aarch64-unknown-linux-musl
@@ -78,6 +101,7 @@ jobs:
               docker tag ghcr.io/napi-rs/napi-rs/nodejs-rust:lts-alpine builder
             build: |
               docker run --rm -v ~/.cargo/git:/root/.cargo/git -v ~/.cargo/registry:/root/.cargo/registry -v $(pwd):/build -w /build builder sh -c "rustup target add aarch64-unknown-linux-musl && CC=aarch64-linux-musl-gcc yarn rs:build --target=aarch64-unknown-linux-musl && /aarch64-linux-musl-cross/bin/aarch64-linux-musl-strip *.node"
+
           - host: ubuntu-18.04
             architecture: x64
             target: 'armv7-unknown-linux-gnueabihf'
@@ -87,12 +111,15 @@ jobs:
             build: |
               CC=arm-linux-gnueabihf-gcc yarn rs:build --target armv7-unknown-linux-gnueabihf
               arm-linux-gnueabihf-strip *.node
+
     name: Nightly - ${{ matrix.settings.target }} - node@16
     runs-on: ${{ matrix.settings.host }}
     steps:
-      - uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # tag=v3
+      - name: Checkout repository
+        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # tag=v3
         with:
           submodules: recursive
+
       - name: Setup node
         uses: actions/setup-node@17f8bd926464a1afa4c6a11669539e9c1ba77048 # tag=v3
         with:
@@ -100,6 +127,7 @@ jobs:
           check-latest: true
           cache: yarn
           architecture: ${{ matrix.settings.architecture }}
+
       - name: Install
         uses: actions-rs/toolchain@16499b5e05bf2e26879000db0c1d13f7e13fa3af # tag=v1
         with:
@@ -107,40 +135,50 @@ jobs:
           override: true
           toolchain: stable
           target: ${{ matrix.settings.target }}
+
       - name: Generate Cargo.lock
         uses: actions-rs/cargo@844f36862e911db73fe0815f00a4a2602c279505 # tag=v1
         with:
           command: generate-lockfile
+
       - name: Cache cargo registry
         uses: actions/cache@48af2dc4a9e8278b89d7fa154b955c30c6aaab09 # tag=v3
         with:
           path: ~/.cargo/registry
           key: ${{ matrix.settings.target }}-node@16-cargo-registry-trimmed-${{ hashFiles('**/Cargo.lock') }}
+
       - name: Cache cargo index
         uses: actions/cache@48af2dc4a9e8278b89d7fa154b955c30c6aaab09 # tag=v3
         with:
           path: ~/.cargo/git
           key: ${{ matrix.settings.target }}-node@16-cargo-index-trimmed-${{ hashFiles('**/Cargo.lock') }}
+
       - name: Cache NPM dependencies
         uses: actions/cache@48af2dc4a9e8278b89d7fa154b955c30c6aaab09 # tag=v3
         with:
           path: node_modules
           key: npm-cache-${{ matrix.settings.target }}-node@16-${{ hashFiles('yarn.lock') }}
+
       - name: Pull latest image
         run: ${{ matrix.settings.docker }}
         env:
           DOCKER_REGISTRY_URL: ghcr.io
+
         if: ${{ matrix.settings.docker }}
       - name: Setup toolchain
         run: ${{ matrix.settings.setup }}
         if: ${{ matrix.settings.setup }}
         shell: bash
+
       - name: Install dependencies
         run: yarn install --immutable
+
       - name: Build
         run: ${{ matrix.settings.build }}
         shell: bash
+
       - name: Upload artifact
+        if: ${{ needs.release_please.outputs.release_created == 'true' }}
         uses: actions/upload-artifact@6673cd052c4cd6fcf4b4e6e60ea986c889389535 # tag=v3
         with:
           name: bindings-${{ matrix.settings.target }}
@@ -150,7 +188,9 @@ jobs:
     runs-on: macos-10.15
     name: Build FreeBSD
     steps:
-      - uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # tag=v3
+      - name: Checkout repository
+        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # tag=v3
+
       - name: Build
         id: build
         uses: vmactions/freebsd-vm@45665d548dfeadbbebb5bb7971150211525fee46 # tag=v0.1.6
@@ -189,7 +229,9 @@ jobs:
             strip -x *.node
             rm -rf node_modules
             rm -rf target
+
       - name: Upload artifact
+        if: ${{ needs.release_please.outputs.release_created == 'true' }}
         uses: actions/upload-artifact@6673cd052c4cd6fcf4b4e6e60ea986c889389535 # tag=v3
         with:
           name: bindings-freebsd
@@ -197,17 +239,22 @@ jobs:
           if-no-files-found: error
   publish:
     name: Publish packages
+    if: ${{ needs.release_please.outputs.release_created == 'true' }}
     runs-on: ubuntu-latest
     needs:
       - build-freebsd
+
     steps:
-      - uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # tag=v3
+      - name: Checkout repository
+        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # tag=v3
+
       - name: Setup node
         uses: actions/setup-node@17f8bd926464a1afa4c6a11669539e9c1ba77048 # tag=v3
         with:
           node-version: 16
           check-latest: true
           cache: yarn
+
       - name: Cache NPM dependencies
         uses: actions/cache@48af2dc4a9e8278b89d7fa154b955c30c6aaab09 # tag=v3
         with:
@@ -215,21 +262,28 @@ jobs:
           key: npm-cache-ubuntu-latest-${{ hashFiles('yarn.lock') }}
           restore-keys: |
             npm-cache-
+
       - name: Install dependencies
         run: yarn install --immutable
+
       - name: Download all artifacts
         uses: actions/download-artifact@fb598a63ae348fa914e94cd0ff38f362e927b741 # tag=v3
         with:
           path: artifacts
+
       - name: Move artifacts
         run: yarn artifacts
+
       - name: List packages
         run: ls -R ./npm
+
       - name: Install missing
         run: sudo apt-get install musl-dev && sudo ln -s /usr/lib/x86_64-linux-musl/libc.so /lib/libc.musl-x86_64.so.1
+
       - name: Build Typescript
         run: yarn ts:build
         shell: bash
+
       - name: Publish
         run: yarn npm:publish
         env:
