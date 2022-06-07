@@ -1,7 +1,10 @@
-use dryoc::constants::*;
-use napi::bindgen_prelude::*;
-use sodiumoxide::{crypto::secretbox, init};
+#![allow(clippy::new_without_default)]
+
 use std::ops::DerefMut;
+
+use napi::bindgen_prelude::*;
+use sodiumoxide::crypto::secretbox;
+use sodiumoxide::init;
 
 #[napi(object, js_name = "Secret_Box")]
 #[allow(non_camel_case_types)]
@@ -28,9 +31,9 @@ impl SecretBox {
         n: Uint8Array,
         k: Uint8Array,
     ) -> Secret_Box {
-        let mut ms = m.deref_mut();
+        let ms = m.deref_mut();
         let mac = secretbox::seal_detached(
-            &mut ms,
+            ms,
             &secretbox::Nonce::from_slice(&n).unwrap(),
             &secretbox::Key::from_slice(&k).unwrap(),
         );
@@ -74,10 +77,10 @@ impl SecretBox {
         n: Uint8Array,
         k: Uint8Array,
     ) -> Uint8Array {
-        let mut ct = c.deref_mut();
+        let ct = c.deref_mut();
 
         secretbox::open_detached(
-            &mut ct,
+            ct,
             &secretbox::Tag::from_slice(&mac).unwrap(),
             &secretbox::Nonce::from_slice(&n).unwrap(),
             &secretbox::Key::from_slice(&k).unwrap(),
@@ -102,30 +105,5 @@ impl SecretBox {
         .unwrap();
 
         Uint8Array::new(pt)
-    }
-
-    #[napi(getter)]
-    pub fn crypto_secretbox_keybytes(&self) -> u32 {
-        CRYPTO_SECRETBOX_KEYBYTES as u32
-    }
-
-    #[napi(getter)]
-    pub fn crypto_secretbox_macbytes(&self) -> u32 {
-        CRYPTO_SECRETBOX_MACBYTES as u32
-    }
-
-    #[napi(getter)]
-    pub fn crypto_secretbox_messagebytes_max(&self) -> u32 {
-        CRYPTO_SECRETBOX_MESSAGEBYTES_MAX as u32
-    }
-
-    #[napi(getter)]
-    pub fn crypto_secretbox_noncebytes(&self) -> u32 {
-        CRYPTO_SECRETBOX_NONCEBYTES as u32
-    }
-
-    #[napi(getter)]
-    pub fn crypto_secretbox_primitive(&self) -> String {
-        CRYPTO_SECRETBOX_PRIMITIVE.to_string()
     }
 }

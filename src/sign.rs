@@ -1,9 +1,15 @@
-use crate::{types::KeyPair, vec_arr_func};
+#![allow(clippy::new_without_default)]
+
+use std::mem::MaybeUninit;
+
 use dryoc::constants::*;
 use libc::c_ulonglong;
 use napi::bindgen_prelude::*;
-use sodiumoxide::{crypto::sign, ffi, init};
-use std::mem::MaybeUninit;
+use sodiumoxide::crypto::sign;
+use sodiumoxide::{ffi, init};
+
+use crate::types::KeyPair;
+use crate::vec_arr_func;
 
 vec_arr_func!(to_state, u64, 8);
 vec_arr_func!(to_count, u64, 2);
@@ -181,30 +187,5 @@ impl Sign {
             &m,
             &sign::PublicKey::from_slice(&pk).unwrap(),
         )
-    }
-
-    #[napi(getter)]
-    pub fn crypto_sign_bytes(&self) -> u32 {
-        CRYPTO_SIGN_BYTES as u32
-    }
-
-    #[napi(getter)]
-    pub fn crypto_sign_messagebytes_max(&self) -> u32 {
-        CRYPTO_SIGN_MESSAGEBYTES_MAX as u32
-    }
-
-    #[napi(getter)]
-    pub fn crypto_sign_publickeybytes(&self) -> u32 {
-        CRYPTO_SIGN_PUBLICKEYBYTES as u32
-    }
-
-    #[napi(getter)]
-    pub fn crypto_sign_secretkeybytes(&self) -> u32 {
-        CRYPTO_SIGN_SECRETKEYBYTES as u32
-    }
-
-    #[napi(getter)]
-    pub fn crypto_sign_seedbytes(&self) -> u32 {
-        CRYPTO_SIGN_SEEDBYTES as u32
     }
 }
