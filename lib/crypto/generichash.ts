@@ -1,18 +1,11 @@
-import { GenericHash } from '../bindings';
+import bindings from '../bindings';
 import type { Nullish } from '../types';
 
-const generichash = new GenericHash();
+const generichash = new bindings.GenericHash();
 
 export interface GenericHashState {
 	opaque: Uint8Array;
 }
-
-export const crypto_generichash_BYTES = generichash.cryptoGenerichashBytes;
-export const crypto_generichash_BYTES_MAX = generichash.cryptoGenerichashBytesMax;
-export const crypto_generichash_BYTES_MIN = generichash.cryptoGenerichashBytesMin;
-export const crypto_generichash_KEYBYTES = generichash.cryptoGenerichashKeybytes;
-export const crypto_generichash_KEYBYTES_MAX = generichash.cryptoGenerichashKeybytesMax;
-export const crypto_generichash_KEYBYTES_MIN = generichash.cryptoGenerichashKeybytesMin;
 
 /** @see https://docs.rs/sodiumoxide/latest/sodiumoxide/crypto/generichash/fn.hash.html */
 export const crypto_generichash = (data: Uint8Array, out_len: Nullish<number>, key: Nullish<Uint8Array>): Uint8Array =>

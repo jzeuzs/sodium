@@ -1,17 +1,7 @@
-import { SecretBox as SB } from '../bindings';
+import bindings from '../bindings';
+import type { CryptoBox as SecretBox } from '../types';
 
-export interface SecretBox {
-	ciphertext: Uint8Array;
-	mac: Uint8Array;
-}
-
-const secretbox = new SB();
-
-export const crypto_secretbox_KEYBYTES: number = secretbox.cryptoSecretboxKeybytes;
-export const crypto_secretbox_MACBYTES: number = secretbox.cryptoSecretboxMacbytes;
-export const crypto_secretbox_MESSAGEBYTES_MAX: number = secretbox.cryptoSecretboxMessagebytesMax;
-export const crypto_secretbox_NONCEBYTES: number = secretbox.cryptoSecretboxNoncebytes;
-export const crypto_secretbox_PRIMITIVE: string = secretbox.cryptoSecretboxPrimitive;
+const secretbox = new bindings.SecretBox();
 
 /** @see https://docs.rs/sodiumoxide/latest/sodiumoxide/crypto/secretbox/xsalsa20poly1305/fn.seal_detached.html */
 export const crypto_secretbox_detached = (m: Uint8Array, n: Uint8Array, k: Uint8Array): SecretBox => secretbox.crypto_secretbox_detached(m, n, k);

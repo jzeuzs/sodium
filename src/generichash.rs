@@ -109,34 +109,4 @@ impl GenericHash {
             _ => Err(Error::new(Status::GenericFailure, "Failed to execute".to_string())),
         }
     }
-
-    #[napi(getter)]
-    pub fn crypto_generichash_bytes(&self) -> u32 {
-        CRYPTO_GENERICHASH_BYTES as u32
-    }
-
-    #[napi(getter)]
-    pub fn crypto_generichash_bytes_max(&self) -> u32 {
-        CRYPTO_GENERICHASH_BYTES_MAX as u32
-    }
-
-    #[napi(getter)]
-    pub fn crypto_generichash_bytes_min(&self) -> u32 {
-        CRYPTO_GENERICHASH_BYTES_MIN as u32
-    }
-
-    #[napi(getter)]
-    pub fn crypto_generichash_keybytes(&self) -> u32 {
-        CRYPTO_GENERICHASH_KEYBYTES as u32
-    }
-
-    #[napi(getter)]
-    pub fn crypto_generichash_keybytes_max(&self) -> u32 {
-        CRYPTO_GENERICHASH_KEYBYTES_MAX as u32
-    }
-
-    #[napi(getter)]
-    pub fn crypto_generichash_keybytes_min(&self) -> u32 {
-        CRYPTO_GENERICHASH_KEYBYTES_MIN as u32
-    }
 }

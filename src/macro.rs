@@ -28,9 +28,11 @@ macro_rules! create_constant {
 }
 
 #[macro_export]
-macro_rules! create_constant_from_dryoc {
+macro_rules! create_constant_fn {
     ($name:ident, $raw:ident, $type:ty) => {
         #[napi(js_name = $name)]
-        pub const $name: $type = dryoc::constants::$raw as $type;
+        pub fn $name() -> $type {
+            unsafe { sodiumoxide::ffi::$raw() as $type }
+        }
     };
 }

@@ -192,44 +192,4 @@ impl SodiumBox {
             secret_key: Uint8Array::new(secretkey.as_ref().to_vec()),
         }
     }
-
-    #[napi(getter)]
-    pub fn crypto_box_beforenmbytes(&self) -> u32 {
-        CRYPTO_BOX_BEFORENMBYTES as u32
-    }
-
-    #[napi(getter)]
-    pub fn crypto_box_macbytes(&self) -> u32 {
-        CRYPTO_BOX_MACBYTES as u32
-    }
-
-    #[napi(getter)]
-    pub fn crypto_box_messagebytes_max(&self) -> u32 {
-        CRYPTO_BOX_MESSAGEBYTES_MAX as u32
-    }
-
-    #[napi(getter)]
-    pub fn crypto_box_noncebytes(&self) -> u32 {
-        CRYPTO_BOX_NONCEBYTES as u32
-    }
-
-    #[napi(getter)]
-    pub fn crypto_box_publickeybytes(&self) -> u32 {
-        CRYPTO_BOX_PUBLICKEYBYTES as u32
-    }
-
-    #[napi(getter)]
-    pub fn crypto_box_sealbytes(&self) -> u32 {
-        CRYPTO_BOX_SEALBYTES as u32
-    }
-
-    #[napi(getter)]
-    pub fn crypto_box_secretkeybytes(&self) -> u32 {
-        CRYPTO_BOX_SECRETKEYBYTES as u32
-    }
-
-    #[napi(getter)]
-    pub fn crypto_box_seedbytes(&self) -> u32 {
-        CRYPTO_BOX_SEEDBYTES as u32
-    }
 }

@@ -2,7 +2,6 @@
 
 use std::ops::DerefMut;
 
-use dryoc::constants::*;
 use napi::bindgen_prelude::*;
 use sodiumoxide::crypto::secretbox;
 use sodiumoxide::init;
@@ -106,30 +105,5 @@ impl SecretBox {
         .unwrap();
 
         Uint8Array::new(pt)
-    }
-
-    #[napi(getter)]
-    pub fn crypto_secretbox_keybytes(&self) -> u32 {
-        CRYPTO_SECRETBOX_KEYBYTES as u32
-    }
-
-    #[napi(getter)]
-    pub fn crypto_secretbox_macbytes(&self) -> u32 {
-        CRYPTO_SECRETBOX_MACBYTES as u32
-    }
-
-    #[napi(getter)]
-    pub fn crypto_secretbox_messagebytes_max(&self) -> u32 {
-        CRYPTO_SECRETBOX_MESSAGEBYTES_MAX as u32
-    }
-
-    #[napi(getter)]
-    pub fn crypto_secretbox_noncebytes(&self) -> u32 {
-        CRYPTO_SECRETBOX_NONCEBYTES as u32
-    }
-
-    #[napi(getter)]
-    pub fn crypto_secretbox_primitive(&self) -> String {
-        CRYPTO_SECRETBOX_PRIMITIVE.to_string()
     }
 }

@@ -48,3 +48,6 @@ wiki/
 # Napi
 *.node
 index.d.ts
+
+# Utilities
+scripts/constants.mjs

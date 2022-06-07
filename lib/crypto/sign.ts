@@ -1,7 +1,7 @@
-import { Sign } from '../bindings';
+import bindings from '../bindings';
 import type { KeyPair } from '../types';
 
-const sign = new Sign();
+const sign = new bindings.Sign();
 
 export interface SignHash {
 	state: BigUint64Array;
@@ -12,12 +12,6 @@ export interface SignHash {
 export interface SignState {
 	hs: SignHash;
 }
-
-export const crypto_sign_BYTES: number = sign.cryptoSignBytes;
-export const crypto_sign_MESSAGEBYTES_MAX: number = sign.cryptoSignMessagebytesMax;
-export const crypto_sign_PUBLICKEYBYTES: number = sign.cryptoSignPublickeybytes;
-export const crypto_sign_SECRETKEYBYTES: number = sign.cryptoSignSecretkeybytes;
-export const crypto_sign_SEEDBYTES: number = sign.cryptoSignSeedbytes;
 
 /** @see https://docs.rs/sodiumoxide/latest/sodiumoxide/crypto/sign/ed25519/fn.sign.html */
 export const crypto_sign = (m: Uint8Array, sk: Uint8Array): Uint8Array => sign.crypto_sign(m, sk);
