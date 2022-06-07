@@ -6,22 +6,42 @@ create_constant!(crypto_aead_chacha20poly1305_ABYTES, u32);
 create_constant!(crypto_aead_chacha20poly1305_ietf_ABYTES, u32);
 create_constant!(crypto_aead_chacha20poly1305_IETF_ABYTES, u32);
 create_constant!(crypto_aead_chacha20poly1305_ietf_KEYBYTES, u32);
-create_constant_fn!(crypto_aead_chacha20poly1305_ietf_MESSAGEBYTES_MAX, crypto_aead_chacha20poly1305_ietf_messagebytes_max, u32);
-create_constant_fn!(crypto_aead_chacha20poly1305_IETF_MESSAGEBYTES_MAX, crypto_aead_chacha20poly1305_ietf_messagebytes_max, u32);
+create_constant_fn!(
+    crypto_aead_chacha20poly1305_ietf_MESSAGEBYTES_MAX,
+    crypto_aead_chacha20poly1305_ietf_messagebytes_max,
+    u32
+);
+create_constant_fn!(
+    crypto_aead_chacha20poly1305_IETF_MESSAGEBYTES_MAX,
+    crypto_aead_chacha20poly1305_ietf_messagebytes_max,
+    u32
+);
 create_constant!(crypto_aead_chacha20poly1305_ietf_NPUBBYTES, u32);
 create_constant!(crypto_aead_chacha20poly1305_IETF_NPUBBYTES, u32);
 create_constant!(crypto_aead_chacha20poly1305_ietf_NSECBYTES, u32);
 create_constant!(crypto_aead_chacha20poly1305_IETF_NSECBYTES, u32);
 create_constant!(crypto_aead_chacha20poly1305_KEYBYTES, u32);
-create_constant_fn!(crypto_aead_chacha20poly1305_MESSAGEBYTES_MAX, crypto_aead_chacha20poly1305_messagebytes_max, u32);
+create_constant_fn!(
+    crypto_aead_chacha20poly1305_MESSAGEBYTES_MAX,
+    crypto_aead_chacha20poly1305_messagebytes_max,
+    u32
+);
 create_constant!(crypto_aead_chacha20poly1305_NPUBBYTES, u32);
 create_constant!(crypto_aead_chacha20poly1305_NSECBYTES, u32);
 create_constant!(crypto_aead_xchacha20poly1305_ietf_ABYTES, u32);
 create_constant!(crypto_aead_xchacha20poly1305_IETF_ABYTES, u32);
 create_constant!(crypto_aead_xchacha20poly1305_ietf_KEYBYTES, u32);
 create_constant!(crypto_aead_xchacha20poly1305_IETF_KEYBYTES, u32);
-create_constant_fn!(crypto_aead_xchacha20poly1305_ietf_MESSAGEBYTES_MAX, crypto_aead_xchacha20poly1305_ietf_messagebytes_max, u32);
-create_constant_fn!(crypto_aead_xchacha20poly1305_IETF_MESSAGEBYTES_MAX, crypto_aead_xchacha20poly1305_ietf_messagebytes_max, u32);
+create_constant_fn!(
+    crypto_aead_xchacha20poly1305_ietf_MESSAGEBYTES_MAX,
+    crypto_aead_xchacha20poly1305_ietf_messagebytes_max,
+    u32
+);
+create_constant_fn!(
+    crypto_aead_xchacha20poly1305_IETF_MESSAGEBYTES_MAX,
+    crypto_aead_xchacha20poly1305_ietf_messagebytes_max,
+    u32
+);
 create_constant!(crypto_aead_xchacha20poly1305_ietf_NPUBBYTES, u32);
 create_constant!(crypto_aead_xchacha20poly1305_IETF_NPUBBYTES, u32);
 create_constant!(crypto_aead_xchacha20poly1305_ietf_NSECBYTES, u32);
@@ -79,7 +99,11 @@ create_constant!(crypto_secretbox_NONCEBYTES, u32);
 create_constant!(crypto_secretstream_xchacha20poly1305_ABYTES, u32);
 create_constant!(crypto_secretstream_xchacha20poly1305_HEADERBYTES, u32);
 create_constant!(crypto_secretstream_xchacha20poly1305_KEYBYTES, u32);
-create_constant_fn!(crypto_secretstream_xchacha20poly1305_MESSAGEBYTES_MAX, crypto_secretstream_xchacha20poly1305_messagebytes_max, u32);
+create_constant_fn!(
+    crypto_secretstream_xchacha20poly1305_MESSAGEBYTES_MAX,
+    crypto_secretstream_xchacha20poly1305_messagebytes_max,
+    u32
+);
 create_constant!(crypto_secretstream_xchacha20poly1305_TAG_FINAL, u32);
 create_constant!(crypto_secretstream_xchacha20poly1305_TAG_MESSAGE, u32);
 create_constant!(crypto_secretstream_xchacha20poly1305_TAG_PUSH, u32);
