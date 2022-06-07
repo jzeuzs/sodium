@@ -8,6 +8,6 @@
 		"streetsidesoftware.code-spell-checker",
 		"usernamehw.errorlens",
 		"EditorConfig.EditorConfig",
-		"matklad.rust-analyzer"
+		"rust-lang.rust-analyzer"
 	]
 }
