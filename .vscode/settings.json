@@ -23,5 +23,6 @@
 		"toolchains",
 		"usesh",
 		"vmactions"
-	]
+	],
+	"rust-analyzer.procMacro.enable": true
 }

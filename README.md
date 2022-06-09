@@ -58,18 +58,21 @@ Running "keypair generation" suite...
 Progress: 100%
 
   libsodium-wrappers:
-    5 211 ops/s, ±4.63%    | 73.06% slower
+    5 109 ops/s, ±3.12%    | 85.44% slower
 
   tweetnacl:
-    1 100 ops/s, ±4.69%    | slowest, 94.31% slower
+    1 108 ops/s, ±1.11%    | slowest, 96.84% slower
 
   chloride:
-    13 909 ops/s, ±10.91%   | 28.1% slower
+    21 946 ops/s, ±7.45%   | 37.46% slower
+
+  sodium:
+    23 691 ops/s, ±1.00%   | 32.49% slower
 
   @devtomio/sodium:
-    19 344 ops/s, ±3.12%   | fastest
+    35 092 ops/s, ±2.84%   | fastest
 
-Finished 4 cases!
+Finished 5 cases!
   Fastest: @devtomio/sodium
   Slowest: tweetnacl
 ```

@@ -15,7 +15,7 @@ USERNAME=${3:-"automatic"}
 UPDATE_RC=${4:-"true"}
 UPDATE_RUST=${5:-"false"}
 RUST_VERSION=${6:-"latest"}
-RUSTUP_PROFILE=${7:-"minimal"}
+RUSTUP_PROFILE=${7:-"complete"}
 
 set -e
 
