@@ -75,7 +75,7 @@ jobs:
         run: yarn --immutable
 
       - name: Run prettier
-        uses: creyD/prettier_action@v4.2
+        uses: creyD/prettier_action@6602189cf8bac1ce73ffe601925f6127ab7f21ac # tag=v4.2
         with:
           dry: true
           prettier_options: --check .
