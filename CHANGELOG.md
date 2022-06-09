@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.2](https://github.com/devtomio/sodium/compare/v0.4.1...v0.4.2) (2022-06-09)
+
+
+### Bug Fixes
+
+* **ci:** fix android build ([ef2ea4a](https://github.com/devtomio/sodium/commit/ef2ea4ade38a165fd0b369c747098da670fb7a30))
+
 ## [0.4.1](https://github.com/devtomio/sodium/compare/v0.4.0...v0.4.1) (2022-06-09)
 
 
