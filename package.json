@@ -1,6 +1,6 @@
 {
 	"name": "@devtomio/sodium",
-	"version": "0.4.1",
+	"version": "0.4.2",
 	"description": "Libsodium for Node.js",
 	"module": "dist/index.mjs",
 	"typedocMain": "src/index.ts",
