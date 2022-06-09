@@ -114,6 +114,7 @@ jobs:
 
     name: Stable - ${{ matrix.settings.target }} - node@16
     runs-on: ${{ matrix.settings.host }}
+    needs: release_please
     steps:
       - name: Checkout repository
         uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # tag=v3
@@ -178,6 +179,7 @@ jobs:
         shell: bash
 
       - name: Upload artifact
+        if: ${{ needs.release_please.outputs.release_created == 'true' }}
         uses: actions/upload-artifact@3cea5372237819ed00197afe530f5a7ea3e805c8 # tag=v3
         with:
           name: bindings-${{ matrix.settings.target }}
@@ -186,6 +188,7 @@ jobs:
 
   build-freebsd:
     runs-on: macos-10.15
+    needs: release_please
     name: Build FreeBSD
     steps:
       - name: Checkout repository
@@ -231,6 +234,7 @@ jobs:
             rm -rf target
 
       - name: Upload artifact
+        if: ${{ needs.release_please.outputs.release_created == 'true' }}
         uses: actions/upload-artifact@3cea5372237819ed00197afe530f5a7ea3e805c8 # tag=v3
         with:
           name: bindings-freebsd
