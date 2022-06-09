@@ -177,12 +177,6 @@ jobs:
         run: ${{ matrix.settings.build }}
         shell: bash
 
-      - name: Build Typescript
-        run: yarn ts:build
-
-      - name: Test
-        run: yarn test
-
       - name: Upload artifact
         if: ${{ needs.release_please.outputs.release_created == 'true' }}
         uses: actions/upload-artifact@3cea5372237819ed00197afe530f5a7ea3e805c8 # tag=v3
