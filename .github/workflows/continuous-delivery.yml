@@ -112,7 +112,7 @@ jobs:
               CC=arm-linux-gnueabihf-gcc yarn rs:build --target armv7-unknown-linux-gnueabihf
               arm-linux-gnueabihf-strip *.node
 
-    name: Nightly - ${{ matrix.settings.target }} - node@16
+    name: Stable - ${{ matrix.settings.target }} - node@16
     runs-on: ${{ matrix.settings.host }}
     steps:
       - name: Checkout repository
@@ -177,6 +177,12 @@ jobs:
         run: ${{ matrix.settings.build }}
         shell: bash
 
+      - name: Build Typescript
+        run: yarn ts:build
+
+      - name: Test
+        run: yarn test
+
       - name: Upload artifact
         if: ${{ needs.release_please.outputs.release_created == 'true' }}
         uses: actions/upload-artifact@3cea5372237819ed00197afe530f5a7ea3e805c8 # tag=v3
@@ -184,6 +190,7 @@ jobs:
           name: bindings-${{ matrix.settings.target }}
           path: ${{ env.APP_NAME }}.*.node
           if-no-files-found: error
+
   build-freebsd:
     runs-on: macos-10.15
     name: Build FreeBSD

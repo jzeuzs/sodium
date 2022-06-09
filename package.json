@@ -30,8 +30,8 @@
 		}
 	},
 	"scripts": {
-		"lint": "eslint src tests --ext ts --fix",
-		"format": "prettier --write . && cargo fmt",
+		"lint": "eslint lib tests --ext ts",
+		"format": "prettier --write . && cargo +nightly fmt",
 		"docs": "typedoc",
 		"test": "jest",
 		"test:watch": "jest --watch",
