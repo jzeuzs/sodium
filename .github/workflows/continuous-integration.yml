@@ -71,6 +71,9 @@ jobs:
           node-version: 16
           check-latest: true
 
+      - name: Install Dependencies
+        run: yarn --immutable
+
       - name: Run prettier
         uses: creyD/prettier_action@v4.2
         with:
