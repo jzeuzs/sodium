@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.1](https://github.com/devtomio/sodium/compare/v0.4.0...v0.4.1) (2022-06-09)
+
+
+### Bug Fixes
+
+* **ci:** publishing to npm failed ([46c54a0](https://github.com/devtomio/sodium/commit/46c54a02140864fd5d17fca16ddc72dc87ab0cd4))
+
 ## [0.4.0](https://github.com/devtomio/sodium/compare/v0.3.0...v0.4.0) (2022-06-09)
 
 
