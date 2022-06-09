@@ -2,3 +2,4 @@ target/
 .yarn/
 dryoc/
 dist/
+CHANGELOG.md

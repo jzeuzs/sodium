@@ -178,7 +178,6 @@ jobs:
         shell: bash
 
       - name: Upload artifact
-        if: ${{ needs.release_please.outputs.release_created == 'true' }}
         uses: actions/upload-artifact@3cea5372237819ed00197afe530f5a7ea3e805c8 # tag=v3
         with:
           name: bindings-${{ matrix.settings.target }}
@@ -232,18 +231,19 @@ jobs:
             rm -rf target
 
       - name: Upload artifact
-        if: ${{ needs.release_please.outputs.release_created == 'true' }}
         uses: actions/upload-artifact@3cea5372237819ed00197afe530f5a7ea3e805c8 # tag=v3
         with:
           name: bindings-freebsd
           path: ${{ env.APP_NAME }}.*.node
           if-no-files-found: error
+
   publish:
     name: Publish packages
     if: ${{ needs.release_please.outputs.release_created == 'true' }}
     runs-on: ubuntu-latest
     needs:
       - build-freebsd
+      - release_please
 
     steps:
       - name: Checkout repository
