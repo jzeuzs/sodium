@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.3](https://github.com/devtomio/sodium/compare/v0.4.2...v0.4.3) (2022-06-09)
+
+
+### Bug Fixes
+
+* **ci:** unknown command ([be1d466](https://github.com/devtomio/sodium/commit/be1d466b114c99b5c7b909f9cc12133c4da02011))
+
 ## [0.4.2](https://github.com/devtomio/sodium/compare/v0.4.1...v0.4.2) (2022-06-09)
 
 
