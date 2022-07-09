@@ -13,9 +13,86 @@
 <div class="tsd-panel tsd-typography"><div align="center">
 
 
-<a href="#" id="" style="color: inherit; text-decoration: none;">
-  <h1></h1>
+<a href="#devtomiosodium" id="devtomiosodium" style="color: inherit; text-decoration: none;">
+  <h1>@devtomio/sodium</h1>
 </a>
+<p><strong><a href="https://libsodium.gitbook.io">Libsodium</a> for <a href="https://nodejs.org">Node.js</a></strong></p>
+<p><a href="https://github.com/devtomio/sodium/blob/main/LICENSE"><img src="https://img.shields.io/github/license/devtomio/sodium" alt="GitHub"></a>
+<a href="https://github.com/devtomio/sodium/actions/workflows/continuous-delivery.yml"><img src="https://github.com/devtomio/sodium/actions/workflows/continuous-delivery.yml/badge.svg" alt="Continuous Delivery"></a>
+<a href="https://github.com/devtomio/sodium/actions/workflows/continuous-integration.yml"><img src="https://github.com/devtomio/sodium/actions/workflows/continuous-integration.yml/badge.svg" alt="Continuous Integration"></a>
+<a href="https://www.npmjs.com/package/@devtomio/sodium"><img src="https://img.shields.io/npm/v/@devtomio/sodium?color=crimson&logo=npm&style=flat-square" alt="npm"></a></p>
+<p><strong>Packages</strong></p>
+<p><a href="https://www.npmjs.com/package/@devtomio/sodium-android-arm64"><img src="https://img.shields.io/npm/v/@devtomio/sodium-android-arm64?color=crimson&logo=npm&style=flat-square&label=@devtomio/sodium-android-arm64" alt="npm"></a>
+<a href="https://www.npmjs.com/package/@devtomio/sodium-darwin-arm64"><img src="https://img.shields.io/npm/v/@devtomio/sodium-darwin-arm64?color=crimson&logo=npm&style=flat-square&label=@devtomio/sodium-darwin-arm64" alt="npm"></a>
+<a href="https://www.npmjs.com/package/@devtomio/sodium-darwin-x64"><img src="https://img.shields.io/npm/v/@devtomio/sodium-darwin-x64?color=crimson&logo=npm&style=flat-square&label=@devtomio/sodium-darwin-x64" alt="npm"></a>
+<a href="https://www.npmjs.com/package/@devtomio/sodium-freebsd-x64"><img src="https://img.shields.io/npm/v/@devtomio/sodium-freebsd-x64?color=crimson&logo=npm&style=flat-square&label=@devtomio/sodium-freebsd-x64" alt="npm"></a>
+<a href="https://www.npmjs.com/package/@devtomio/sodium-linux-arm64-gnu"><img src="https://img.shields.io/npm/v/@devtomio/sodium-linux-arm64-gnu?color=crimson&logo=npm&style=flat-square&label=@devtomio/sodium-linux-arm64-gnu" alt="npm"></a>
+<a href="https://www.npmjs.com/package/@devtomio/sodium-linux-arm64-musl"><img src="https://img.shields.io/npm/v/@devtomio/sodium-linux-arm64-musl?color=crimson&logo=npm&style=flat-square&label=@devtomio/sodium-linux-arm64-musl" alt="npm"></a>
+<a href="https://www.npmjs.com/package/@devtomio/sodium-linux-x64-gnu"><img src="https://img.shields.io/npm/v/@devtomio/sodium-linux-x64-gnu?color=crimson&logo=npm&style=flat-square&label=@devtomio/sodium-linux-x64-gnu" alt="npm"></a>
+<a href="https://www.npmjs.com/package/@devtomio/sodium-linux-x64-musl"><img src="https://img.shields.io/npm/v/@devtomio/sodium-linux-x64-musl?color=crimson&logo=npm&style=flat-square&label=@devtomio/sodium-linux-x64-musl" alt="npm"></a>
+<a href="https://www.npmjs.com/package/@devtomio/sodium-win32-x64-msvc"><img src="https://img.shields.io/npm/v/@devtomio/sodium-win32-x64-msvc?color=crimson&logo=npm&style=flat-square&label=@devtomio/sodium-win32-x64-msvc" alt="npm"></a>
+<a href="https://www.npmjs.com/package/@devtomio/sodium-linux-arm-gnueabihf"><img src="https://img.shields.io/npm/v/@devtomio/sodium-linux-arm-gnueabihf?color=crimson&logo=npm&style=flat-square&label=@devtomio/sodium-linux-arm-gnueabihf" alt="npm"></a></p>
+</div>
+
+
+<a href="#features" id="features" style="color: inherit; text-decoration: none;">
+  <h2>Features</h2>
+</a>
+<ul>
+<li>Fully ready for TypeScript!</li>
+<li>Includes ESM ready entrypoint</li>
+<li>Easy to use</li>
+<li>Has the same API as libsodium</li>
+<li>Faster than similar libraries (see <a href="#benchmarks">benchmarks</a>)</li>
+<li>Powered by <a href="https://github.com/brndnmtthws/dryoc">Rust</a></li>
+</ul>
+<hr>
+
+<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+  <h2>Usage</h2>
+</a>
+<p><strong><em>For complete usages, please dive into our <a href="https://devtomio.github.io/sodium">documentation</a></em></strong></p>
+
+<a href="#basic-usage" id="basic-usage" style="color: inherit; text-decoration: none;">
+  <h3>Basic usage</h3>
+</a>
+<p>Generating a keypair</p>
+<pre><code class="language-typescript"><span class="hl-0">import</span><span class="hl-1"> </span><span class="hl-2">*</span><span class="hl-1"> </span><span class="hl-0">as</span><span class="hl-1"> </span><span class="hl-3">sodium</span><span class="hl-1"> </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-4">&#39;@devtomio/sodium&#39;</span><span class="hl-1">;</span><br/><br/><span class="hl-2">const</span><span class="hl-1"> { </span><span class="hl-5">public_key</span><span class="hl-1">, </span><span class="hl-5">secret_key</span><span class="hl-1"> } = </span><span class="hl-3">sodium</span><span class="hl-1">.</span><span class="hl-6">crypto_box_keypair</span><span class="hl-1">();</span>
+</code></pre>
+
+<a href="#benchmarks" id="benchmarks" style="color: inherit; text-decoration: none;">
+  <h2>Benchmarks</h2>
+</a>
+<pre><code class="language-sh"><span class="hl-1">$ yarn bench</span><br/><br/><span class="hl-1">Running </span><span class="hl-4">&quot;keypair generation&quot;</span><span class="hl-1"> suite...</span><br/><span class="hl-1">Progress: 100%</span><br/><br/><span class="hl-1">  libsodium-wrappers:</span><br/><span class="hl-1">    5 109 ops/s, ±3.12%    | 85.44% slower</span><br/><br/><span class="hl-1">  tweetnacl:</span><br/><span class="hl-1">    1 108 ops/s, ±1.11%    | slowest, 96.84% slower</span><br/><br/><span class="hl-1">  chloride:</span><br/><span class="hl-1">    21 946 ops/s, ±7.45%   | 37.46% slower</span><br/><br/><span class="hl-1">  sodium:</span><br/><span class="hl-1">    23 691 ops/s, ±1.00%   | 32.49% slower</span><br/><br/><span class="hl-1">  @devtomio/sodium:</span><br/><span class="hl-1">    35 092 ops/s, ±2.84%   | fastest</span><br/><br/><span class="hl-1">Finished 5 cases!</span><br/><span class="hl-1">  Fastest: @devtomio/sodium</span><br/><span class="hl-1">  Slowest: tweetnacl</span>
+</code></pre>
+
+<a href="#contributors-✨" id="contributors-✨" style="color: inherit; text-decoration: none;">
+  <h2>Contributors ✨</h2>
+</a>
+<p>Thanks goes to these wonderful people (<a href="https://allcontributors.org/docs/en/emoji-key">emoji key</a>):</p>
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://tomio.codes/"><img src="https://avatars.githubusercontent.com/u/75403863?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Tomio</b></sub></a><br /><a href="https://github.com/devtomio/sodium/commits?author=devtomio" title="Code">💻</a> <a href="https://github.com/devtomio/sodium/commits?author=devtomio" title="Documentation">📖</a> <a href="#example-devtomio" title="Examples">💡</a> <a href="#ideas-devtomio" title="Ideas, Planning, & Feedback">🤔</a> <a href="#infra-devtomio" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#maintenance-devtomio" title="Maintenance">🚧</a> <a href="#platform-devtomio" title="Packaging/porting to new platform">📦</a></td>
+    <td align="center"><a href="https://renovate.whitesourcesoftware.com/"><img src="https://avatars.githubusercontent.com/u/25180681?v=4?s=100" width="100px;" alt=""/><br /><sub><b>WhiteSource Renovate</b></sub></a><br /><a href="#maintenance-renovate-bot" title="Maintenance">🚧</a></td>
+    <td align="center"><a href="https://github.com/apps/renovate"><img src="https://avatars.githubusercontent.com/in/2740?v=4?s=100" width="100px;" alt=""/><br /><sub><b>renovate[bot]</b></sub></a><br /><a href="#maintenance-renovate[bot]" title="Maintenance">🚧</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+<p>This project follows the <a href="https://github.com/all-contributors/all-contributors">all-contributors</a> specification. Contributions of any kind welcome!</p>
+
+<a href="#license" id="license" style="color: inherit; text-decoration: none;">
+  <h2>License</h2>
+</a>
+<p>This software is released under the MIT License, see <a href="https://github.com/devtomio/sodium/blob/main/LICENSE">LICENSE</a>.</p>
+<p><a href="https://app.fossa.com/projects/git%2Bgithub.com%2Fdevtomio%2Fsodium?ref=badge_large"><img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2Fdevtomio%2Fsodium.svg?type=large" alt="FOSSA Status"></a></p>
 </div></div>
 <div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 <div class="tsd-navigation settings">
